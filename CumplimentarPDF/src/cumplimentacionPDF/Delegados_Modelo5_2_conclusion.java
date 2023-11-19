@@ -59,21 +59,21 @@ public class Delegados_Modelo5_2_conclusion {
             String municipio, String nombre, String direccion,
             String direccion1, String municipio1,  String c, boolean Casilla_de_verificacion2,
             String centro_trabajo1, String empresa) throws CumplimentarPDFException {
-        this.n_empresa = n_empresa;
-        this.n_comercial = n_comercial;
+        setN_empresa(n_empresa);
+        this.n_comercial = n_empresa;
         setDni(dni);
-        this.domicilio = domicilio;
-        this.municipio = municipio;
-        this.prov = "SEVILLA";
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.direccion1 = direccion1;
-        this.municipio1 = municipio1;
+        setDomicilio(domicilio);
+        setMunicipio(municipio);
+        this.prov = Delegados_Modelo3.PROVINCIA;
+        this.nombre = n_empresa;
+        this.direccion = domicilio;
+        this.direccion1 = "";
+        this.municipio1 = municipio;
         this.prov1 = "SEVILLA";
         setC(c);
         this.casilla_de_verificacion2 = true;
-        this.centro_trabajo1 = centro_trabajo1;
-        this.empresa = empresa;
+        this.centro_trabajo1 = n_empresa;
+        this.empresa = n_empresa;
     }
     
     public String getN_empresa() {

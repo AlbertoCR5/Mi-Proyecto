@@ -17,14 +17,14 @@ public class Delegados_Modelo9 {
             String sindicato9, String sindicato10, String sindicato11, String sindicato12, String sindicato13,
             String represent2, String represent3, String represent4, String represent5, String represent6,
             String represent7, String represent8, String represent9, String represent10, String represent11,
-            String represent12, String represent13) {
+            String represent12, String represent13) throws CumplimentarPDFException {
         this.n_empresa = n_empresa;
-        this.cif = cif;
+        setCif(cif);
         this.n_comercial = n_comercial;
         this.n_trabajo = n_trabajo;
         this.direccion = direccion;
         this.municipio = municipio;
-        this.prov = "SEVILLA";
+        this.prov = Delegados_Modelo3.PROVINCIA;
         this.nombre = nombre;
         this.dni = dni;
         this.dia = dia;
@@ -59,14 +59,14 @@ public class Delegados_Modelo9 {
         this.represent13 = represent13;
     }
     
-    public Delegados_Modelo9(String n_empresa, String cif, String direccion, String municipio) {
-        this.n_empresa = n_empresa;
-        this.cif = cif;
+    public Delegados_Modelo9(String n_empresa, String cif, String direccion, String municipio) throws CumplimentarPDFException {
+        setN_empresa(n_empresa);;
+        setCif(cif);
         this.n_comercial = n_empresa;
         this.n_trabajo = n_empresa;
-        this.direccion = direccion;
-        this.municipio = municipio;
-        this.prov = "SEVILLA"; 
+        setDireccion(direccion);;
+        setMunicipio(municipio);;
+        this.prov = Delegados_Modelo3.PROVINCIA;
     }
     
     public String getN_empresa() {

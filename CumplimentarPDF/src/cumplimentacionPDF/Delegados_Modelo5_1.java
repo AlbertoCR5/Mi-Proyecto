@@ -87,13 +87,13 @@ public class Delegados_Modelo5_1 {
     
     public Delegados_Modelo5_1(String n_empresa, String n_CIF, String n_centro, String n_direccion,
             String municipio, String f_constitucion) throws CumplimentarPDFException {
-        this.n_empresa = n_empresa;
-        this.n_comercial = "EL MISMO";
+        setN_empresa(n_empresa);
+        this.n_comercial = n_empresa;
         setN_CIF(n_CIF);
         this.n_centro = n_empresa;
-        this.n_direccion = n_direccion;
-        this.municipio = municipio;
-        this.prov = "SEVILLA";
+        setN_direccion(n_direccion);
+        setMunicipio(municipio);
+        this.prov = Delegados_Modelo3.PROVINCIA;
         setF_constitucion(f_constitucion);
     }
     

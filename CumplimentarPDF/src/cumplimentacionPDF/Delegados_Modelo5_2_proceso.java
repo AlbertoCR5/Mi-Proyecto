@@ -169,9 +169,9 @@ public class Delegados_Modelo5_2_proceso {
         
     	setDia1(dia1);
         setMes1(mes1);
-        this.t_electores = t_electores;
+        setT_electores(t_electores);;
         setE_varones(e_varones);
-        this.e_mujeres = e_mujeres;
+        setE_mujeres(e_mujeres);
         this.e_total = t_electores;
         setN_representantes(n_representantes);
     }

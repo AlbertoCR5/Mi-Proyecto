@@ -8,7 +8,7 @@ package cumplimentacionPDF;
 public class Delegados_Modelo3 {
     
 	//Constantes
-	private static final String PROVINCIA = "SEVILLA";
+	public static final String PROVINCIA = "SEVILLA";
 	private static final String PROMOTOR = "UNIÓN  GENERAL  DE  TRABAJADORES";
 	
 	ComprobarCIF validadorCIF = new ComprobarCIF();
@@ -44,14 +44,13 @@ public class Delegados_Modelo3 {
         setDni3(dni3);;
     }
     
-    public Delegados_Modelo3(
-            String n_empresa, String CIF, String d_centro, String municipio) throws CumplimentarPDFException {
-        this.n_empresa = n_empresa;
+    public Delegados_Modelo3(String n_empresa, String CIF, String d_centro, String municipio) throws CumplimentarPDFException {
+        setN_empresa(n_empresa);
         setCIF(CIF);
         this.n_comercial = n_empresa;
         this.n_centro = n_empresa;
-        this.d_centro = d_centro;
-        this.municipio = municipio;
+        setD_centro(d_centro);
+        setMunicipio(municipio);
         this.prov = PROVINCIA;
         this.resolucion1 = PROMOTOR;
     }
