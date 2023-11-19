@@ -2,6 +2,8 @@ package cumplimentacionPDF;
 
 public class Delegados_Modelo5_2_conclusion {
 
+	ComprobarCIF validadorCIF = new ComprobarCIF();
+	ComprobarDNI validarDNI = new ComprobarDNI();
     private String n_empresa, n_comercial, dni, domicilio, municipio, prov, actv_econo, actv_econo1,
             nombre, direccion, direccion1, municipio1, comarca, prov1, telf, c, p, actv_econo2, actv_econo3,
             seg, soc, nombre1, t_fijos, t_eventuales, t_jornadas, trabj_eventuales, t_trabajadores, centro_trabajo,
@@ -14,10 +16,10 @@ public class Delegados_Modelo5_2_conclusion {
             String comarca, String prov1, String telf, String c, String actv_econo2, String actv_econo3, String seg, String soc, 
             boolean Casilla_de_verificacion2, String nombre1, String t_fijos, String t_eventuales, String t_jornadas, String trabj_eventuales,
             String t_trabajadores, String centro_trabajo, String centro_trabajo1, String empresa, String presidente,
-            String secretario, String representantes, String dni6, String dni7, String dni8) {
+            String secretario, String representantes, String dni6, String dni7, String dni8) throws CumplimentarPDFException {
         this.n_empresa = n_empresa;
         this.n_comercial = n_comercial;
-        this.dni = dni;
+        setDni(dni);
         this.domicilio = domicilio;
         this.municipio = municipio;
         this.prov = "SEVILLA";
@@ -30,7 +32,7 @@ public class Delegados_Modelo5_2_conclusion {
         this.comarca = comarca;
         this.prov1 = prov1;
         this.telf = telf;
-        this.c = c;
+        setC(c);
         this.actv_econo2 = actv_econo2;
         this.actv_econo3 = actv_econo3;
         this.seg = seg;
@@ -48,18 +50,18 @@ public class Delegados_Modelo5_2_conclusion {
         this.presidente = presidente;
         this.secretario = secretario;
         this.representantes = representantes;
-        this.dni6 = dni6;
-        this.dni7 = dni7;
-        this.dni8 = dni8;
+        setDni6(dni6);
+        setDni7(dni7);
+        setDni8(dni8);
     }
     
     public Delegados_Modelo5_2_conclusion(String n_empresa, String n_comercial, String dni, String domicilio,
             String municipio, String nombre, String direccion,
             String direccion1, String municipio1,  String c, boolean Casilla_de_verificacion2,
-            String centro_trabajo1, String empresa) {
+            String centro_trabajo1, String empresa) throws CumplimentarPDFException {
         this.n_empresa = n_empresa;
         this.n_comercial = n_comercial;
-        this.dni = dni;
+        setDni(dni);
         this.domicilio = domicilio;
         this.municipio = municipio;
         this.prov = "SEVILLA";
@@ -68,7 +70,7 @@ public class Delegados_Modelo5_2_conclusion {
         this.direccion1 = direccion1;
         this.municipio1 = municipio1;
         this.prov1 = "SEVILLA";
-        this.c = c;
+        setC(c);
         this.casilla_de_verificacion2 = true;
         this.centro_trabajo1 = centro_trabajo1;
         this.empresa = empresa;
@@ -94,7 +96,11 @@ public class Delegados_Modelo5_2_conclusion {
 		return dni;
 	}
 
-	public void setDni(String dni) {
+	public void setDni(String dni) throws CumplimentarPDFException {
+    	
+    	if (!validadorCIF.validarCIF(dni)) {
+			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto");
+		}
 		this.dni = dni;
 	}
 
@@ -198,7 +204,11 @@ public class Delegados_Modelo5_2_conclusion {
 		return c;
 	}
 
-	public void setC(String c) {
+	public void setC(String c) throws CumplimentarPDFException {
+		
+		if (c.matches("\\d{5}")) {
+			throw new CumplimentarPDFException("ERROR, Codigo Postal introducido no valido");
+		}
 		this.c = c;
 	}
 
@@ -342,7 +352,11 @@ public class Delegados_Modelo5_2_conclusion {
 		return dni6;
 	}
 
-	public void setDni6(String dni6) {
+	public void setDni6(String dni6) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni6)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
 		this.dni6 = dni6;
 	}
 
@@ -350,7 +364,11 @@ public class Delegados_Modelo5_2_conclusion {
 		return dni7;
 	}
 
-	public void setDni7(String dni7) {
+	public void setDni7(String dni7) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni7)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
 		this.dni7 = dni7;
 	}
 
@@ -358,7 +376,11 @@ public class Delegados_Modelo5_2_conclusion {
 		return dni8;
 	}
 
-	public void setDni8(String dni8) {
+	public void setDni8(String dni8) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni8)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
 		this.dni8 = dni8;
 	}
 

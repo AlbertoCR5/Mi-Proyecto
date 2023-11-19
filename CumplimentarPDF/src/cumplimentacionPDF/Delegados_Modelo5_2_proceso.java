@@ -10,6 +10,8 @@ package cumplimentacionPDF;
  */
 public class Delegados_Modelo5_2_proceso {
 
+	ComprobarDNI validarDNI = new ComprobarDNI();
+	ValidadorFecha validadorFecha = new ValidadorFecha();
     private String dia1, mes1, ambito, v_varones, v_mujeres,
             t_votantes, p_cumpli, p_blancas, nulos, repre_elegidos, candidaturas1, codigo1, d_elegidos1, d_presentados1,
             v_delegados1, candidaturas2, codigo2, d_presentados2, d_elegidos2, v_delegados2, candidaturas3, codigo3,
@@ -47,12 +49,12 @@ public class Delegados_Modelo5_2_proceso {
             String antiguedad3, String sexo3, String f_nacimiento3, String votos3, String codigo13, String sindicato3,
             String inicial4, String apellidos4, String dni4, String antiguedad4, String sexo4, String f_nacimiento4,
             String votos4, String codigo14, String sindicato4, String inicial5, String apellidos5, String dni5,
-            String antiguedad5, String sexo5, String f_nacimiento5, String votos5, String codigo15, String sindicato5) {
-        this.dia1 = dia1;
-        this.mes1 = mes1;
+            String antiguedad5, String sexo5, String f_nacimiento5, String votos5, String codigo15, String sindicato5) throws CumplimentarPDFException {
+        setDia1(dia1);
+        setMes1(mes1);
         this.t_electores = t_electores;
         this.ambito = ambito;
-        this.e_varones = e_varones;
+        setE_varones(e_varones);
         this.e_mujeres = e_mujeres;
         this.e_total = t_electores;
         setN_representantes(n_representantes);
@@ -116,59 +118,59 @@ public class Delegados_Modelo5_2_proceso {
         this.alta_baja = alta_baja;
         this.inicial1 = inicial1;
         this.apellidos1 = apellidos1;
-        this.dni1 = dni1;
+        setDni1(dni1);
         this.antiguedad1 = antiguedad1;
-        this.sexo1 = sexo1;
-        this.f_nacimiento1 = f_nacimiento1;
+        setSexo1(sexo1);
+        setF_nacimiento1(f_nacimiento1);
         this.votos1 = votos1;
         this.codigo11 = codigo11;
         this.sindicato1 = sindicato1;
         this.alta_baja2 = alta_baja2;
         this.inicial2 = inicial2;
         this.apellidos2 = apellidos2;
-        this.dni2 = dni2;
+        setDni2(dni2);
         this.antiguedad2 = antiguedad2;
-        this.sexo2 = sexo2;
-        this.f_nacimiento2 = f_nacimiento2;
+        setSexo2(sexo2);
+        setF_nacimiento2(f_nacimiento2);
         this.votos2 = votos2;
         this.codigo12 = codigo12;
         this.sindicato2 = sindicato2;
         this.alta_baja3 = alta_baja3;
         this.inicial3 = inicial3;
         this.apellidos3 = apellidos3;
-        this.dni3 = dni3;
+        setDni3(dni3);
         this.antiguedad3 = antiguedad3;
-        this.sexo3 = sexo3;
-        this.f_nacimiento3 = f_nacimiento3;
+        setSexo3(sexo3);
+        setF_nacimiento3(f_nacimiento3);
         this.votos3 = votos3;
         this.codigo13 = codigo13;
         this.sindicato3 = sindicato3;
         this.inicial4 = inicial4;
         this.apellidos4 = apellidos4;
-        this.dni4 = dni4;
+        setDni4(dni4);
         this.antiguedad4 = antiguedad4;
-        this.sexo4 = sexo4;
-        this.f_nacimiento4 = f_nacimiento4;
+        setSexo4(sexo4);
+        setF_nacimiento4(f_nacimiento4);
         this.votos4 = votos4;
         this.codigo14 = codigo14;
         this.sindicato4 = sindicato4;
         this.inicial5 = inicial5;
         this.apellidos5 = apellidos5;
-        this.dni5 = dni5;
+        setDni5(dni5);
         this.antiguedad5 = antiguedad5;
-        this.sexo5 = sexo5;
-        this.f_nacimiento5 = f_nacimiento5;
+        setSexo5(sexo5);
+        setF_nacimiento5(f_nacimiento5);
         this.votos5 = votos5;
         this.codigo15 = codigo15;
         this.sindicato5 = sindicato5;
     }
 
-    public Delegados_Modelo5_2_proceso(String dia1, String mes1, short t_electores, short e_varones, short e_mujeres, short e_total){
+    public Delegados_Modelo5_2_proceso(String dia1, String mes1, short t_electores, short e_varones, short e_mujeres, short e_total) throws CumplimentarPDFException{
         
-        this.dia1 = dia1;
-        this.mes1 = mes1;
+    	setDia1(dia1);
+        setMes1(mes1);
         this.t_electores = t_electores;
-        this.e_varones = e_varones;
+        setE_varones(e_varones);
         this.e_mujeres = e_mujeres;
         this.e_total = t_electores;
         setN_representantes(n_representantes);
@@ -177,7 +179,11 @@ public class Delegados_Modelo5_2_proceso {
 		return dia1;
 	}
 
-	public void setDia1(String dia1) {
+	public void setDia1(String dia1) throws CumplimentarPDFException {
+		
+		if (Short.valueOf(dia1) < 1 || Short.valueOf(dia1) > 31) {
+			throw new CumplimentarPDFException("ERROR, dia incorrecto");
+		}
 		this.dia1 = dia1;
 	}
 
@@ -185,7 +191,11 @@ public class Delegados_Modelo5_2_proceso {
 		return mes1;
 	}
 
-	public void setMes1(String mes1) {
+	public void setMes1(String mes1) throws CumplimentarPDFException {
+    	
+    	if (Short.valueOf(mes1) < 1 || Short.valueOf(mes1) > 12) {
+			throw new CumplimentarPDFException("ERROR, mes incorrecto");
+		}
 		this.mes1 = mes1;
 	}
 
@@ -209,7 +219,11 @@ public class Delegados_Modelo5_2_proceso {
 		return e_varones;
 	}
 
-	public void setE_varones(short e_varones) {
+	public void setE_varones(short e_varones) throws CumplimentarPDFException {
+		
+		if (e_varones > getT_electores()) {
+			throw new CumplimentarPDFException("ERROR, el total de varones no puede ser mayor al de electores");
+		}
 		this.e_varones = e_varones;
 	}
 
@@ -218,7 +232,7 @@ public class Delegados_Modelo5_2_proceso {
 	}
 
 	public void setE_mujeres(short e_mujeres) {
-		this.e_mujeres = e_mujeres;
+		this.e_mujeres = (short) (getT_electores() - getE_varones());
 	}
 
 	public short getE_total() {
@@ -296,7 +310,11 @@ public class Delegados_Modelo5_2_proceso {
 		return t_votantes;
 	}
 
-	public void setT_votantes(String t_votantes) {
+	public void setT_votantes(String t_votantes) throws CumplimentarPDFException {
+		
+		if (Integer.valueOf(t_votantes) > getT_electores()) {
+			throw new CumplimentarPDFException("ERROR, El numero de papeletas cumpliemntadas no puede ser superior al de votantes");
+		}
 		this.t_votantes = t_votantes;
 	}
 
@@ -304,7 +322,11 @@ public class Delegados_Modelo5_2_proceso {
 		return p_cumpli;
 	}
 
-	public void setP_cumpli(String p_cumpli) {
+	public void setP_cumpli(String p_cumpli) throws CumplimentarPDFException {
+		
+		if (Integer.valueOf(getT_votantes()) < Integer.valueOf(p_cumpli)) {
+			throw new CumplimentarPDFException("ERROR, El numero de votantes no puede ser superior al de electores");
+		}
 		this.p_cumpli = p_cumpli;
 	}
 
@@ -760,7 +782,11 @@ public class Delegados_Modelo5_2_proceso {
 		return dni1;
 	}
 
-	public void setDni1(String dni1) {
+	public void setDni1(String dni1) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni1)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
 		this.dni1 = dni1;
 	}
 
@@ -776,7 +802,11 @@ public class Delegados_Modelo5_2_proceso {
 		return sexo1;
 	}
 
-	public void setSexo1(String sexo1) {
+	public void setSexo1(String sexo1) throws CumplimentarPDFException {
+		
+		if (sexo1.equalsIgnoreCase("H") || sexo1.equalsIgnoreCase("M")) {
+			throw new CumplimentarPDFException("ERROR, sexo no contemplado");
+		}
 		this.sexo1 = sexo1;
 	}
 
@@ -784,7 +814,11 @@ public class Delegados_Modelo5_2_proceso {
 		return f_nacimiento1;
 	}
 
-	public void setF_nacimiento1(String f_nacimiento1) {
+	public void setF_nacimiento1(String f_nacimiento1) throws CumplimentarPDFException {
+		
+		if (!validadorFecha.esFormatoFechaValido(f_nacimiento1)) {
+			throw new CumplimentarPDFException("ERROR, Formato de fecha no válido");
+		}
 		this.f_nacimiento1 = f_nacimiento1;
 	}
 
@@ -840,7 +874,11 @@ public class Delegados_Modelo5_2_proceso {
 		return dni2;
 	}
 
-	public void setDni2(String dni2) {
+	public void setDni2(String dni2) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni2)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
 		this.dni2 = dni2;
 	}
 
@@ -856,7 +894,11 @@ public class Delegados_Modelo5_2_proceso {
 		return sexo2;
 	}
 
-	public void setSexo2(String sexo2) {
+	public void setSexo2(String sexo2) throws CumplimentarPDFException {
+		
+		if (sexo2.equalsIgnoreCase("H") || sexo2.equalsIgnoreCase("M")) {
+			throw new CumplimentarPDFException("ERROR, sexo no contemplado");
+		}
 		this.sexo2 = sexo2;
 	}
 
@@ -864,7 +906,11 @@ public class Delegados_Modelo5_2_proceso {
 		return f_nacimiento2;
 	}
 
-	public void setF_nacimiento2(String f_nacimiento2) {
+	public void setF_nacimiento2(String f_nacimiento2) throws CumplimentarPDFException {
+		
+		if (!validadorFecha.esFormatoFechaValido(f_nacimiento2)) {
+			throw new CumplimentarPDFException("ERROR, Formato de fecha no válido");
+		}
 		this.f_nacimiento2 = f_nacimiento2;
 	}
 
@@ -920,7 +966,11 @@ public class Delegados_Modelo5_2_proceso {
 		return dni3;
 	}
 
-	public void setDni3(String dni3) {
+	public void setDni3(String dni3) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni4)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
 		this.dni3 = dni3;
 	}
 
@@ -936,7 +986,11 @@ public class Delegados_Modelo5_2_proceso {
 		return sexo3;
 	}
 
-	public void setSexo3(String sexo3) {
+	public void setSexo3(String sexo3) throws CumplimentarPDFException {
+		
+		if (sexo3.equalsIgnoreCase("H") || sexo3.equalsIgnoreCase("M")) {
+			throw new CumplimentarPDFException("ERROR, sexo no contemplado");
+		}
 		this.sexo3 = sexo3;
 	}
 
@@ -944,7 +998,11 @@ public class Delegados_Modelo5_2_proceso {
 		return f_nacimiento3;
 	}
 
-	public void setF_nacimiento3(String f_nacimiento3) {
+	public void setF_nacimiento3(String f_nacimiento3) throws CumplimentarPDFException {
+		
+		if (!validadorFecha.esFormatoFechaValido(f_nacimiento3)) {
+			throw new CumplimentarPDFException("ERROR, Formato de fecha no válido");
+		}
 		this.f_nacimiento3 = f_nacimiento3;
 	}
 
@@ -992,7 +1050,11 @@ public class Delegados_Modelo5_2_proceso {
 		return dni4;
 	}
 
-	public void setDni4(String dni4) {
+	public void setDni4(String dni4) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni4)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
 		this.dni4 = dni4;
 	}
 
@@ -1008,7 +1070,11 @@ public class Delegados_Modelo5_2_proceso {
 		return sexo4;
 	}
 
-	public void setSexo4(String sexo4) {
+	public void setSexo4(String sexo4) throws CumplimentarPDFException {
+		
+		if (sexo4.equalsIgnoreCase("H") || sexo4.equalsIgnoreCase("M")) {
+			throw new CumplimentarPDFException("ERROR, sexo no contemplado");
+		}
 		this.sexo4 = sexo4;
 	}
 
@@ -1016,7 +1082,11 @@ public class Delegados_Modelo5_2_proceso {
 		return f_nacimiento4;
 	}
 
-	public void setF_nacimiento4(String f_nacimiento4) {
+	public void setF_nacimiento4(String f_nacimiento4) throws CumplimentarPDFException {
+		
+		if (!validadorFecha.esFormatoFechaValido(f_nacimiento4)) {
+			throw new CumplimentarPDFException("ERROR, Formato de fecha no válido");
+		}
 		this.f_nacimiento4 = f_nacimiento4;
 	}
 
@@ -1064,7 +1134,11 @@ public class Delegados_Modelo5_2_proceso {
 		return dni5;
 	}
 
-	public void setDni5(String dni5) {
+	public void setDni5(String dni5) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni5)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
 		this.dni5 = dni5;
 	}
 
@@ -1080,7 +1154,11 @@ public class Delegados_Modelo5_2_proceso {
 		return sexo5;
 	}
 
-	public void setSexo5(String sexo5) {
+	public void setSexo5(String sexo5) throws CumplimentarPDFException {
+		
+		if (sexo5.equalsIgnoreCase("H") || sexo5.equalsIgnoreCase("M")) {
+			throw new CumplimentarPDFException("ERROR, sexo no contemplado");
+		}
 		this.sexo5 = sexo5;
 	}
 
@@ -1088,7 +1166,11 @@ public class Delegados_Modelo5_2_proceso {
 		return f_nacimiento5;
 	}
 
-	public void setF_nacimiento5(String f_nacimiento5) {
+	public void setF_nacimiento5(String f_nacimiento5) throws CumplimentarPDFException {
+		
+		if (!validadorFecha.esFormatoFechaValido(f_nacimiento5)) {
+			throw new CumplimentarPDFException("ERROR, Formato de fecha no válido");
+		}
 		this.f_nacimiento5 = f_nacimiento5;
 	}
 
@@ -1116,5 +1198,3 @@ public class Delegados_Modelo5_2_proceso {
 		this.sindicato5 = sindicato5;
 	}
 }
-
-

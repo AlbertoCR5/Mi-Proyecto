@@ -23,7 +23,7 @@ public class ContarVerCamposTextoPDF {
     public static void main(String[] args) {
         try {
             // Ruta del formulario PDF
-            String rutaFormulario = ModificarCamposTextoPDF.MODELO_5_2_CONCLUSION;
+            String rutaFormulario = ModificarCamposTextoPDFv2.MODELO_5_2_CONCLUSION;
 
             // Contar campos de texto y obtener sus IDs
             contarCamposTextoPDF(rutaFormulario);

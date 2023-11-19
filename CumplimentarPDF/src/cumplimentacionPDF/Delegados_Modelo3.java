@@ -7,46 +7,53 @@ package cumplimentacionPDF;
 
 public class Delegados_Modelo3 {
     
+	//Constantes
+	private static final String PROVINCIA = "SEVILLA";
+	private static final String PROMOTOR = "UNIÓN  GENERAL  DE  TRABAJADORES";
+	
+	ComprobarCIF validadorCIF = new ComprobarCIF();
+	ComprobarDNI validarDNI = new ComprobarDNI();
+	
+	//Atributos
     private String n_empresa, CIF, n_comercial, n_centro, d_centro, municipio, prov, lugar, horas, dia, meses, ano, resolucion1, resolucion2, presidencia, dni4, vocal, dni2, secretario, dni3;
     
     public Delegados_Modelo3(
             String n_empresa, String CIF, String n_comercial, String n_centro, String d_centro, String municipio,
             String prov, String lugar, String horas, String dia, String meses, String ano, String resolucion1,
             String resolucion2, String presidencia, String dni4, String vocal, String dni2,
-            String secretario, String dni3) {
+            String secretario, String dni3) throws CumplimentarPDFException {
         this.n_empresa = n_empresa;
         setCIF(CIF);
         this.n_comercial = n_comercial;
         this.n_centro = n_centro;
         this.d_centro = d_centro;
         this.municipio = municipio;
-        this.prov = ModificarCamposTextoPDF.PROVINCIA;
+        this.prov = PROVINCIA;
         this.lugar = lugar;
         this.horas = horas;
-        this.dia = dia;
-        this.meses = meses;
+        setDia(dia);
+        setMeses(meses);
         this.ano = ano;
-        this.resolucion1 = ModificarCamposTextoPDF.PROMOTOR;
+        this.resolucion1 = PROMOTOR;
         this.resolucion2 = resolucion2;
         this.presidencia = presidencia;
-        this.dni4 = dni4;
+        setDni4(dni4);
         this.vocal = vocal;
-        this.dni2 = dni2;
+        setDni2(dni2);
         this.secretario = secretario;
-        this.dni3 = dni3;
+        setDni3(dni3);;
     }
     
     public Delegados_Modelo3(
-            String n_empresa, String CIF, String d_centro, String municipio) {
+            String n_empresa, String CIF, String d_centro, String municipio) throws CumplimentarPDFException {
         this.n_empresa = n_empresa;
         setCIF(CIF);
-        this.n_comercial = "EL MISMO";
+        this.n_comercial = n_empresa;
         this.n_centro = n_empresa;
         this.d_centro = d_centro;
         this.municipio = municipio;
-        this.prov = "SEVILLA";
-        this.resolucion1 = ModificarCamposTextoPDF.PROMOTOR;
-       
+        this.prov = PROVINCIA;
+        this.resolucion1 = PROMOTOR;
     }
     
     // Getters
@@ -127,16 +134,12 @@ public class Delegados_Modelo3 {
         this.n_empresa = n_empresa;
     }
 
-    public void setCIF(String CIF) {
-    	
-    	ComprobarCIF validadorCIF = new ComprobarCIF();
+    public void setCIF(String CIF) throws CumplimentarPDFException {
     	
     	if (!validadorCIF.validarCIF(CIF)) {
-			System.out.println("ERROR, El CIF indicado no es correcto");
+			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto");
 		}
-    	else {
-    		this.CIF = CIF;
-    	}
+    	this.CIF = CIF;
     }
 
     public void setN_comercial(String n_comercial) {
@@ -163,7 +166,17 @@ public class Delegados_Modelo3 {
         this.horas = horas;
     }
 
-    public void setMeses(String meses) {
+    public void setMeses(String meses) throws CumplimentarPDFException {
+    	
+    	if (Short.valueOf(meses) < 1 || Short.valueOf(meses) > 12) {
+			throw new CumplimentarPDFException("ERROR, mes incorrecto");
+		}
+    	
+    	for (Meses mes : Meses.values()) {
+			if (meses.equals(mes.obtenerNombre())) {
+				meses = mes.toString();
+			}
+		}
         this.meses = meses;
     }
 
@@ -183,7 +196,11 @@ public class Delegados_Modelo3 {
         this.presidencia = presidencia;
     }
 
-    public void setDni4(String dni4) {
+    public void setDni4(String dni4) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni4)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
         this.dni4 = dni4;
     }
 
@@ -191,7 +208,11 @@ public class Delegados_Modelo3 {
         this.vocal = vocal;
     }
 
-    public void setDni2(String dni2) {
+    public void setDni2(String dni2) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni2)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
         this.dni2 = dni2;
     }
 
@@ -199,7 +220,11 @@ public class Delegados_Modelo3 {
         this.secretario = secretario;
     }
 
-    public void setDni3(String dni3) {
+    public void setDni3(String dni3) throws CumplimentarPDFException {
+    	
+    	if (!validarDNI.esDNIValido(dni3)) {
+    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+		}
         this.dni3 = dni3;
     }
 
@@ -215,8 +240,11 @@ public class Delegados_Modelo3 {
 		return dia;
 	}
 
-	public void setDia(String dia) {
+	public void setDia(String dia) throws CumplimentarPDFException {
+		
+		if (Short.valueOf(dia) < 1 || Short.valueOf(dia) > 31) {
+			throw new CumplimentarPDFException("ERROR, dia incorrecto");
+		}
 		this.dia = dia;
 	}
 }
-
