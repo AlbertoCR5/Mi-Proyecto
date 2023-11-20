@@ -1,31 +1,32 @@
-package Delegados;
+package cumplimentacionPDF;
 
 import java.io.IOException;
 
 public class Imprimir {
-	
+
 	public static void main(String[] args) {
-        try {
-            // Ruta al intérprete de PowerShell
-            String powerShellCmd = "powershell.exe";
+		try {
+			// Ruta al intÃ©rprete de PowerShell
+			String powerShellCmd = "powershell.exe";
 
-            // Ruta al script .ps1 que deseas ejecutar
-            String scriptPath = "C:\\Users\\alber\\Desktop\\ImprimirComite.ps1";
+			// Ruta al script .ps1 que deseas ejecutar
+			String scriptPath = "C:\\Users\\alber\\Desktop\\ImprimirComite.ps1";
 
-            // Crear el proceso para ejecutar el script
-            ProcessBuilder processBuilder = new ProcessBuilder(powerShellCmd, "-File", scriptPath);
+			// Crear el proceso para ejecutar el script
+			ProcessBuilder processBuilder = new ProcessBuilder(powerShellCmd, "-File", scriptPath);
 
-            // Iniciar el proceso
-            Process process = processBuilder.start();
+			// Iniciar el proceso
+			Process process = processBuilder.start();
 
-            // Esperar a que el proceso termine
-            int exitCode = process.waitFor();
-            
-            // Imprimir el código de salida del proceso
-            System.out.println("El script se ejecutó con código de salida: " + exitCode);
+			// Esperar a que el proceso termine
+			int exitCode = process.waitFor();
 
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+			// Imprimir el cÃ³digo de salida del proceso
+			System.out.println("El script se ejecutÃ³ con cÃ³digo de salida: " + exitCode);
+
+		} catch (IOException | InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

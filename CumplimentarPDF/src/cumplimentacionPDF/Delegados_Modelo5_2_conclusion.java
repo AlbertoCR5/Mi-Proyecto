@@ -4,79 +4,80 @@ public class Delegados_Modelo5_2_conclusion {
 
 	ComprobarCIF validadorCIF = new ComprobarCIF();
 	ComprobarDNI validarDNI = new ComprobarDNI();
-    private String n_empresa, n_comercial, dni, domicilio, municipio, prov, actv_econo, actv_econo1,
-            nombre, direccion, direccion1, municipio1, comarca, prov1, telf, c, p, actv_econo2, actv_econo3,
-            seg, soc, nombre1, t_fijos, t_eventuales, t_jornadas, trabj_eventuales, t_trabajadores, centro_trabajo,
-            centro_trabajo1, empresa, presidente, secretario, representantes, dni6, dni7, dni8;
+	private String n_empresa, n_comercial, dni, domicilio, municipio, prov, actv_econo, actv_econo1, nombre, direccion,
+			direccion1, municipio1, comarca, prov1, telf, c, p, actv_econo2, actv_econo3, seg, soc, nombre1, t_fijos,
+			t_eventuales, t_jornadas, trabj_eventuales, t_trabajadores, centro_trabajo, centro_trabajo1, empresa,
+			presidente, secretario, representantes, dni6, dni7, dni8;
 
-    private boolean casilla_de_verificacion2 = false;
-    
-    public Delegados_Modelo5_2_conclusion(String n_empresa, String n_comercial, String dni, String domicilio,
-            String municipio, String prov, String actv_econo, String actv_econo1, String nombre, String direccion, String direccion1, String municipio1, 
-            String comarca, String prov1, String telf, String c, String actv_econo2, String actv_econo3, String seg, String soc, 
-            boolean Casilla_de_verificacion2, String nombre1, String t_fijos, String t_eventuales, String t_jornadas, String trabj_eventuales,
-            String t_trabajadores, String centro_trabajo, String centro_trabajo1, String empresa, String presidente,
-            String secretario, String representantes, String dni6, String dni7, String dni8) throws CumplimentarPDFException {
-        this.n_empresa = n_empresa;
-        this.n_comercial = n_comercial;
-        setDni(dni);
-        this.domicilio = domicilio;
-        this.municipio = municipio;
-        this.prov = "SEVILLA";
-        this.actv_econo = actv_econo;
-        this.actv_econo1 = actv_econo1;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.direccion1 = direccion1;
-        this.municipio1 = municipio1;
-        this.comarca = comarca;
-        this.prov1 = prov1;
-        this.telf = telf;
-        setC(c);
-        this.actv_econo2 = actv_econo2;
-        this.actv_econo3 = actv_econo3;
-        this.seg = seg;
-        this.soc = soc;
-        this.casilla_de_verificacion2 = true;
-        this.nombre1 = nombre1;
-        this.t_fijos = t_fijos;
-        this.t_eventuales = t_eventuales;
-        this.t_jornadas = t_jornadas;
-        this.trabj_eventuales = trabj_eventuales;
-        this.t_trabajadores = t_trabajadores;
-        this.centro_trabajo = centro_trabajo;
-        this.centro_trabajo1 = centro_trabajo1;
-        this.empresa = empresa;
-        this.presidente = presidente;
-        this.secretario = secretario;
-        this.representantes = representantes;
-        setDni6(dni6);
-        setDni7(dni7);
-        setDni8(dni8);
-    }
-    
-    public Delegados_Modelo5_2_conclusion(String n_empresa, String n_comercial, String dni, String domicilio,
-            String municipio, String nombre, String direccion,
-            String direccion1, String municipio1,  String c, boolean Casilla_de_verificacion2,
-            String centro_trabajo1, String empresa) throws CumplimentarPDFException {
-        setN_empresa(n_empresa);
-        this.n_comercial = n_empresa;
-        setDni(dni);
-        setDomicilio(domicilio);
-        setMunicipio(municipio);
-        this.prov = Delegados_Modelo3.PROVINCIA;
-        this.nombre = n_empresa;
-        this.direccion = domicilio;
-        this.direccion1 = "";
-        this.municipio1 = municipio;
-        this.prov1 = "SEVILLA";
-        setC(c);
-        this.casilla_de_verificacion2 = true;
-        this.centro_trabajo1 = n_empresa;
-        this.empresa = n_empresa;
-    }
-    
-    public String getN_empresa() {
+	private boolean casilla_de_verificacion2 = false;
+
+	public Delegados_Modelo5_2_conclusion(String n_empresa, String n_comercial, String dni, String domicilio,
+			String municipio, String prov, String actv_econo, String actv_econo1, String nombre, String direccion,
+			String direccion1, String municipio1, String comarca, String prov1, String telf, String c,
+			String actv_econo2, String actv_econo3, String seg, String soc, boolean Casilla_de_verificacion2,
+			String nombre1, String t_fijos, String t_eventuales, String t_jornadas, String trabj_eventuales,
+			String t_trabajadores, String centro_trabajo, String centro_trabajo1, String empresa, String presidente,
+			String secretario, String representantes, String dni6, String dni7, String dni8)
+			throws CumplimentarPDFException {
+		this.n_empresa = n_empresa;
+		this.n_comercial = n_comercial;
+		setDni(dni);
+		this.domicilio = domicilio;
+		this.municipio = municipio;
+		this.prov = "SEVILLA";
+		this.actv_econo = actv_econo;
+		this.actv_econo1 = actv_econo1;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.direccion1 = direccion1;
+		this.municipio1 = municipio1;
+		this.comarca = comarca;
+		this.prov1 = prov1;
+		this.telf = telf;
+		setC(c);
+		this.actv_econo2 = actv_econo2;
+		this.actv_econo3 = actv_econo3;
+		this.seg = seg;
+		this.soc = soc;
+		this.casilla_de_verificacion2 = true;
+		this.nombre1 = nombre1;
+		this.t_fijos = t_fijos;
+		this.t_eventuales = t_eventuales;
+		this.t_jornadas = t_jornadas;
+		this.trabj_eventuales = trabj_eventuales;
+		this.t_trabajadores = t_trabajadores;
+		this.centro_trabajo = centro_trabajo;
+		this.centro_trabajo1 = centro_trabajo1;
+		this.empresa = empresa;
+		this.presidente = presidente;
+		this.secretario = secretario;
+		this.representantes = representantes;
+		setDni6(dni6);
+		setDni7(dni7);
+		setDni8(dni8);
+	}
+
+	public Delegados_Modelo5_2_conclusion(String n_empresa, String n_comercial, String dni, String domicilio,
+			String municipio, String nombre, String direccion, String direccion1, String municipio1, String c,
+			boolean Casilla_de_verificacion2, String centro_trabajo1, String empresa) throws CumplimentarPDFException {
+		setN_empresa(n_empresa);
+		this.n_comercial = n_empresa;
+		setDni(dni);
+		setDomicilio(domicilio);
+		setMunicipio(municipio);
+		this.prov = Delegados_Modelo3.PROVINCIA;
+		this.nombre = n_empresa;
+		this.direccion = domicilio;
+		this.direccion1 = "";
+		this.municipio1 = municipio;
+		this.prov1 = "SEVILLA";
+		setC(c);
+		this.casilla_de_verificacion2 = true;
+		this.centro_trabajo1 = n_empresa;
+		this.empresa = n_empresa;
+	}
+
+	public String getN_empresa() {
 		return n_empresa;
 	}
 
@@ -97,8 +98,8 @@ public class Delegados_Modelo5_2_conclusion {
 	}
 
 	public void setDni(String dni) throws CumplimentarPDFException {
-    	
-    	if (!validadorCIF.validarCIF(dni)) {
+
+		if (!validadorCIF.validarCIF(dni)) {
 			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto");
 		}
 		this.dni = dni;
@@ -205,7 +206,7 @@ public class Delegados_Modelo5_2_conclusion {
 	}
 
 	public void setC(String c) throws CumplimentarPDFException {
-		
+
 		if (c.matches("\\d{5}")) {
 			throw new CumplimentarPDFException("ERROR, Codigo Postal introducido no valido");
 		}
@@ -353,9 +354,9 @@ public class Delegados_Modelo5_2_conclusion {
 	}
 
 	public void setDni6(String dni6) throws CumplimentarPDFException {
-    	
-    	if (!validarDNI.esDNIValido(dni6)) {
-    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+
+		if (!validarDNI.esDNIValido(dni6)) {
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
 		}
 		this.dni6 = dni6;
 	}
@@ -365,9 +366,9 @@ public class Delegados_Modelo5_2_conclusion {
 	}
 
 	public void setDni7(String dni7) throws CumplimentarPDFException {
-    	
-    	if (!validarDNI.esDNIValido(dni7)) {
-    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+
+		if (!validarDNI.esDNIValido(dni7)) {
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
 		}
 		this.dni7 = dni7;
 	}
@@ -377,9 +378,9 @@ public class Delegados_Modelo5_2_conclusion {
 	}
 
 	public void setDni8(String dni8) throws CumplimentarPDFException {
-    	
-    	if (!validarDNI.esDNIValido(dni8)) {
-    		throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+
+		if (!validarDNI.esDNIValido(dni8)) {
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
 		}
 		this.dni8 = dni8;
 	}
