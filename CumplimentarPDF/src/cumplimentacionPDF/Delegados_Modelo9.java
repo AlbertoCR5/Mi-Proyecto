@@ -85,7 +85,7 @@ public class Delegados_Modelo9 {
 	public void setCif(String cif) throws CumplimentarPDFException {
 
 		if (!validadorCIF.validarCIF(cif)) {
-			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto\n");
 		}
 		this.cif = cif;
 	}
@@ -145,7 +145,7 @@ public class Delegados_Modelo9 {
 	public void setDni(String dni) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni = dni;
 	}
@@ -157,7 +157,7 @@ public class Delegados_Modelo9 {
 	public void setDia(String dia) throws CumplimentarPDFException {
 
 		if (Short.valueOf(dia) < 1 || Short.valueOf(dia) > 31) {
-			throw new CumplimentarPDFException("ERROR, dia incorrecto");
+			throw new CumplimentarPDFException("ERROR, dia incorrecto\n");
 		}
 		this.dia = dia;
 	}
@@ -169,12 +169,12 @@ public class Delegados_Modelo9 {
 	public void setMes(String mes) throws CumplimentarPDFException {
 
 		if (Short.valueOf(mes) < 1 || Short.valueOf(mes) > 12) {
-			throw new CumplimentarPDFException("ERROR, mes incorrecto");
+			throw new CumplimentarPDFException("ERROR, mes incorrecto\n");
 		}
 
-		for (Meses meses : Meses.values()) {
-			if (mes.equals(meses.obtenerNombre())) {
-				mes = meses.toString();
+		for (Meses month : Meses.values()) {
+			if (mes.equals(month.obtenerNombre())) {
+				mes = month.toString();
 			}
 		}
 		this.mes = mes;

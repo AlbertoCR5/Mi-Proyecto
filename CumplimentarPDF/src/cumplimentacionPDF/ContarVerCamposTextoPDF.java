@@ -23,7 +23,7 @@ public class ContarVerCamposTextoPDF {
 	public static void main(String[] args) {
 		try {
 			// Ruta del formulario PDF
-			String rutaFormulario = ModificarCamposTextoPDF.MODELO_3;
+			String rutaFormulario = ModificarCamposTextoPDF.MODELO_5_2_CONCLUSION;
 
 			// Contar campos de texto y obtener sus IDs
 			contarCamposTextoPDF(rutaFormulario);
@@ -41,6 +41,7 @@ public class ContarVerCamposTextoPDF {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public static void contarCamposTextoPDF(String rutaFormulario) throws IOException {
 		try (PDDocument pdfDocument = PDDocument.load(new File(rutaFormulario))) {
 
@@ -66,6 +67,7 @@ public class ContarVerCamposTextoPDF {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public static String[] extraerIDsCamposTextoPDF(String rutaFormulario) throws IOException {
 		List<String> ids = new ArrayList<>();
 		try (PDDocument pdfDocument = PDDocument.load(new File(rutaFormulario))) {

@@ -121,7 +121,7 @@ public class Delegados_Modelo5_1 {
 	public void setN_CIF(String n_CIF) throws CumplimentarPDFException {
 
 		if (!validadorCIF.validarCIF(n_CIF)) {
-			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto\n");
 		}
 		this.n_CIF = n_CIF;
 	}
@@ -164,8 +164,8 @@ public class Delegados_Modelo5_1 {
 
 	public void setF_constitucion(String f_constitucion) throws CumplimentarPDFException {
 
-		if (!validadorFecha.esFormatoFechaValido(fecha)) {
-			throw new CumplimentarPDFException("ERROR, Formato de fecha no válido");
+		if (!validadorFecha.esFormatoFechaValido(f_constitucion)) {
+			throw new CumplimentarPDFException("ERROR, Formato de fecha no válido\n");
 		}
 		this.f_constitucion = f_constitucion;
 	}
@@ -193,7 +193,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni1(String dni1) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni1)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni1 = dni1;
 	}
@@ -229,7 +229,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni2(String dni2) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni2)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni2 = dni2;
 	}
@@ -265,7 +265,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni3(String dni3) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni1)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni3 = dni3;
 	}
@@ -301,7 +301,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni4(String dni4) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni4)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni4 = dni4;
 	}
@@ -337,7 +337,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni5(String dni5) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni5)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni5 = dni5;
 	}
@@ -373,7 +373,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni6(String dni6) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni6)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni6 = dni6;
 	}
@@ -409,7 +409,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni7(String dni7) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni7)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni7 = dni7;
 	}
@@ -445,7 +445,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni8(String dni8) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni8)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni8 = dni8;
 	}
@@ -481,7 +481,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni9(String dni9) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni9)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni9 = dni9;
 	}
@@ -517,7 +517,7 @@ public class Delegados_Modelo5_1 {
 	public void setDni10(String dni10) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni10)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni10 = dni10;
 	}

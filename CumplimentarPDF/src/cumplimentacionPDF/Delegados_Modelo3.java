@@ -57,6 +57,11 @@ public class Delegados_Modelo3 {
 		this.resolucion1 = PROMOTOR;
 	}
 
+	public Delegados_Modelo3(String CIF) throws CumplimentarPDFException {
+
+		setCIF(CIF);
+	}
+
 	// Getters
 	public String getN_empresa() {
 		return n_empresa;
@@ -138,7 +143,7 @@ public class Delegados_Modelo3 {
 	public void setCIF(String CIF) throws CumplimentarPDFException {
 
 		if (!validadorCIF.validarCIF(CIF)) {
-			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto\n");
 		}
 		this.CIF = CIF;
 	}
@@ -170,7 +175,7 @@ public class Delegados_Modelo3 {
 	public void setMeses(String meses) throws CumplimentarPDFException {
 
 		if (Short.valueOf(meses) < 1 || Short.valueOf(meses) > 12) {
-			throw new CumplimentarPDFException("ERROR, mes incorrecto");
+			throw new CumplimentarPDFException("ERROR, mes incorrecto\n");
 		}
 
 		for (Meses mes : Meses.values()) {
@@ -200,7 +205,7 @@ public class Delegados_Modelo3 {
 	public void setDni4(String dni4) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni4)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni4 = dni4;
 	}
@@ -212,7 +217,7 @@ public class Delegados_Modelo3 {
 	public void setDni2(String dni2) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni2)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni2 = dni2;
 	}
@@ -224,7 +229,7 @@ public class Delegados_Modelo3 {
 	public void setDni3(String dni3) throws CumplimentarPDFException {
 
 		if (!validarDNI.esDNIValido(dni3)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto");
+			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
 		this.dni3 = dni3;
 	}
@@ -244,7 +249,7 @@ public class Delegados_Modelo3 {
 	public void setDia(String dia) throws CumplimentarPDFException {
 
 		if (Short.valueOf(dia) < 1 || Short.valueOf(dia) > 31) {
-			throw new CumplimentarPDFException("ERROR, dia incorrecto");
+			throw new CumplimentarPDFException("ERROR, dia incorrecto\n");
 		}
 		this.dia = dia;
 	}

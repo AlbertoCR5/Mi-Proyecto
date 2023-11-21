@@ -8,9 +8,6 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
-//import org.apache.pdfbox.pdmodel.PDPage;
-////import org.apache.pdfbox.pdmodel.PDAcroForm;
-////import org.apache.pdfbox.pdmodel.PDField;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDButton;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
@@ -23,7 +20,7 @@ public class ModificarCamposTextoPDFv2 {
     public static final String MODELO_3 = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_3.pdf";
     public static final String MODELO_5_1 = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_1.pdf";
     public static final String MODELO_5_2_PROCESO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_2_proceso.pdf";
-    public static final String MODELO_5_2_CONCLUSION = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_2_conclusion.pdf";
+    public static final String MODELO_5_2_CONCLUSION = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_2_conclusionp.pdf";
     public static final String MODELO_9 = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_9.pdf";
     public static final String MODELO_3_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_3_CUMPLIMENTADO ";
     public static final String MODELO_5_1_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_1_CUMPLIMENTADO ";
@@ -97,6 +94,7 @@ public class ModificarCamposTextoPDFv2 {
         			+ "\n(4) Todos los modelos de comite"
         			+ "\n(5) Modelos de escrutinio de delegados"
         			+ "\n(6) Modelos 3 y 4"
+        			+ "\n(7) Imprimir"        			
         			+ "\n(0) Salir\n");
     		opcion = comprobarEntero();
 		} while (opcion < 0 || opcion > 6);
@@ -105,16 +103,10 @@ public class ModificarCamposTextoPDFv2 {
 		return opcion;
 	}
 	
-	@SuppressWarnings("null")
 	private static void tratarMenu(int opcion) throws CumplimentarPDFException {
 		
-		Delegados_Modelo3 modelo3;
-    	Delegados_Modelo5_1 modelo5_1;
-    	Delegados_Modelo5_2_proceso modelo5_2P;
-    	Delegados_Modelo5_2_conclusion modelo5_2C;
-    	Delegados_Modelo9 modelo9;
-    	String nombreEmpresa, CIF = null, municipio, direccion, fechaConstitucion, diaVotacion, mesVotacion, CP;
-		short totalElectores, varones;
+    	String nombreEmpresa, CIF, municipio, direccion, fechaConstitucion, diaVotacion, mesVotacion, CP;
+		short totalElectores, varones, opcionImprimir;
     	
 		switch (opcion) {
 
@@ -122,7 +114,7 @@ public class ModificarCamposTextoPDFv2 {
 			// Ruta de los formularios PDF
 			String[] rutaFormulario = { MODELO_3, MODELO_5_1, MODELO_5_2_PROCESO, MODELO_5_2_CONCLUSION, MODELO_9 };
 			
-			nombreEmpresa = solicitarNombreMesa("Nombre de la empresa: ");
+			nombreEmpresa = solicitarNombreEmpresa("Nombre de la empresa: ");
 			CIF = solicitarCIF("CIF: ");
 			municipio = solicitarMunicipio("Municipio: ");
 			direccion = solicitarDireccion("Direccion: ");
@@ -131,13 +123,20 @@ public class ModificarCamposTextoPDFv2 {
 			diaVotacion = solicitarDiaVotacion("Dia Votacion: ");
 			mesVotacion = solicitarMesVotacion("Mes Votacion: ");
 			totalElectores = solicitarElectores("Total electores: ");
-			varones = solicitarVarones("Varones: ");
+			varones = solicitarVarones("Varones: ", totalElectores);
+			
+			
+			Delegados_Modelo3 modelo3 = new Delegados_Modelo3(nombreEmpresa, CIF, direccion, municipio);
+			Delegados_Modelo5_1 modelo5_1 = new Delegados_Modelo5_1(nombreEmpresa, CIF, mesVotacion, direccion, municipio, fechaConstitucion);
+			Delegados_Modelo5_2_proceso modelo5_2P = new Delegados_Modelo5_2_proceso(diaVotacion, mesVotacion, totalElectores, varones, (short) (totalElectores - varones), totalElectores);
+			Delegados_Modelo5_2_conclusion modelo5_2C = new Delegados_Modelo5_2_conclusion(nombreEmpresa, nombreEmpresa, CIF, direccion, municipio, nombreEmpresa, direccion, direccion, municipio, CP, true, nombreEmpresa, nombreEmpresa);
+			Delegados_Modelo9 modelo9 = new Delegados_Modelo9(nombreEmpresa, CIF, direccion, municipio);
 	    	
 			for (String ruta : rutaFormulario) {
 				try {
 					modificarCamposTextoPDF(ruta, modelo3, modelo5_1, modelo5_2P, modelo5_2C, modelo9);
 				} catch (IOException e) {
-					e.printStackTrace();
+					mostrarMensaje(e.getMessage());
 				}
 			}
 			break;
@@ -146,7 +145,7 @@ public class ModificarCamposTextoPDFv2 {
 			// Ruta de los formularios PDF
 			String[] rutaFormulario2 = {MODELO_5_1, MODELO_5_2_PROCESO, MODELO_5_2_CONCLUSION, MODELO_9};
 			
-			nombreEmpresa = solicitarNombreMesa("Nombre de la empresa: ");
+			nombreEmpresa = solicitarNombreEmpresa("Nombre de la empresa: ");
 			CIF = solicitarCIF("CIF: ");
 			municipio = solicitarMunicipio("Municipio: ");
 			direccion = solicitarDireccion("Direccion: ");
@@ -155,15 +154,20 @@ public class ModificarCamposTextoPDFv2 {
 			diaVotacion = solicitarDiaVotacion("Dia Votacion: ");
 			mesVotacion = solicitarMesVotacion("Mes Votacion: ");
 			totalElectores = solicitarElectores("Total electores: ");
-			varones = solicitarVarones("Varones: ");
-				    	
-	    	
+			varones = solicitarVarones("Varones: ", totalElectores);
+			
+			modelo3 = new Delegados_Modelo3(nombreEmpresa, CIF, direccion, municipio);
+			modelo5_1 = new Delegados_Modelo5_1(nombreEmpresa, CIF, mesVotacion, direccion, municipio, fechaConstitucion);
+			modelo5_2P = new Delegados_Modelo5_2_proceso(diaVotacion, mesVotacion, totalElectores, varones, (short) (totalElectores - varones), totalElectores);
+			modelo5_2C = new Delegados_Modelo5_2_conclusion(nombreEmpresa, nombreEmpresa, CIF, direccion, municipio, nombreEmpresa, direccion, direccion, municipio, CP, true, nombreEmpresa, nombreEmpresa);
+			modelo9 = new Delegados_Modelo9(nombreEmpresa, CIF, direccion, municipio);
+			
 			// Ruta del formulario PDF
 			for (String ruta : rutaFormulario2) {
 				try {
 					modificarCamposTextoPDF(ruta, modelo3, modelo5_1, modelo5_2P, modelo5_2C, modelo9);
 				} catch (IOException e) {
-					e.printStackTrace();
+					mostrarMensaje(e.getMessage());
 				}
 			}
 			break;
@@ -172,23 +176,33 @@ public class ModificarCamposTextoPDFv2 {
 			// Ruta del formularios PDF
 			String rutaFormulario3 = MODELO_3;
 			
-			nombreEmpresa = solicitarNombreMesa("Nombre de la empresa: ");
+			nombreEmpresa = solicitarNombreEmpresa("Nombre de la empresa: ");
 			CIF = solicitarCIF("CIF: ");
 			municipio = solicitarMunicipio("Municipio: ");
 			direccion = solicitarDireccion("Direccion: ");
 			fechaConstitucion = solicitarFechaConstitucion("Fecha Constitucion (FORMATO dd/mm/AAAA): ");
 
+			modelo3 = new Delegados_Modelo3(nombreEmpresa, CIF, direccion, municipio);
+			modelo5_1 = new Delegados_Modelo5_1(nombreEmpresa, CIF, "12", direccion, municipio, fechaConstitucion);
+			modelo5_2P = new Delegados_Modelo5_2_proceso("12", "12", (short) 12, (short) 12, (short) (12 - 12), (short) 12);
+			modelo5_2C = new Delegados_Modelo5_2_conclusion(nombreEmpresa, nombreEmpresa, CIF, direccion, municipio, nombreEmpresa, direccion, direccion, municipio, "41000", false, nombreEmpresa, nombreEmpresa);
+			modelo9 = new Delegados_Modelo9(nombreEmpresa, CIF, direccion, municipio);
+			
 			// Ruta del formulario PDF
 			try {
 				modificarCamposTextoPDF(rutaFormulario3, modelo3, modelo5_1, modelo5_2P, modelo5_2C, modelo9);
 			} catch (IOException e) {
-				e.printStackTrace();
+				mostrarMensaje(e.getMessage());
 			}
 			break;
 //		case value:
 //
 //			break;
 
+		case 7:
+			opcionImprimir = mostrarMenuImprimir();
+			tratarMenuImprimir(opcionImprimir);
+			break;
 		default:
 			mostrarMensaje("Adios");
 			sc.close();
@@ -197,46 +211,139 @@ public class ModificarCamposTextoPDFv2 {
 
 	}
 
-	private static short solicitarVarones(String string) {
-		// TODO Auto-generated method stub
-		return 0;
+	private static void tratarMenuImprimir(short opcionImprimir) {
+
+		Imprimir impresion = new Imprimir();
+		switch (opcionImprimir) {
+		case 1:
+			mostrarMensaje("Lanzando impresión de Todos los modelos de delegados No Cumplimentados");
+			impresion.imprimirDelegados();
+			break;
+			
+		case 4:
+			mostrarMensaje("Lanzando impresión de Todos los modelos de comité No Cumplimentados");
+			impresion.imprimirComites();
+			break;
+
+		case 7:
+			String nombreEmpresa = solicitarNombreEmpresa("Nombre de la empresa a imprimir: ");
+			mostrarMensaje("Lanzando impresión de Todos los modelos anteriormente Cumplimentados");
+			impresion.imprimirCumplimentados(nombreEmpresa);
+			break;
+		default:
+			mostrarMensaje("Adios");
+			sc.close();
+			break;
+		}
+		
+	}
+
+	private static short mostrarMenuImprimir() {
+
+		short opcionImprimir;
+		do {
+    		mostrarMensaje("Seleccione modelos a imprimir"
+        			+ "\nDELEGADOS"
+        			+ "\n(1) Todos los modelos de delegado No Cumplimentado"
+        			+ "\n(2) Modelos de escrutinio de delegados No Cumplimentado"
+        			+ "\n(3) Modelo 3 No Cumplimentado"
+        			+ "\n"
+        			+ "\nCOMITE"
+        			+ "\n(4) Todos los modelos de comite No Cumplimentado"
+        			+ "\n(5) Modelos de escrutinio de delegados No Cumplimentado"
+        			+ "\n(6) Modelos 3 y 4 No Cumplimentado"
+        			+ "\n"
+        			+ "\nCUMPLIMETADOS"
+        			+ "\n(7) Imprimir modelos anteriormente Cumplimentados"        			
+        			+ "\n(8) Volver"
+        			+ "\n(0) Salir\n");
+    		opcionImprimir = comprobarEntero();
+		} while (opcionImprimir < 0 || opcionImprimir > 8);
+		
+		return opcionImprimir;
+	}
+
+	private static short solicitarVarones(String string, short totalElectores) {
+
+		boolean esValido;
+		short varones;
+
+		do {
+			esValido = true;
+			mostrarMensaje(string);
+			varones = sc.nextShort();
+			if (varones > totalElectores) {
+				esValido = false;
+				mostrarMensaje("ERROR, el numero de electores varones no puede ser superior al de electores\n");
+			}
+		} while (!esValido);
+
+		return varones;
 	}
 
 	private static short solicitarElectores(String string) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		mostrarMensaje("Total electores: ");
+		short totalElectores = sc.nextShort();
+		
+		return totalElectores;
 	}
 
 	private static String solicitarMesVotacion(String string) {
-		// TODO Auto-generated method stub
-		return null;
+
+		boolean esValido;
+		String mes;
+
+		do {
+			esValido = true;
+			mostrarMensaje(string);
+			mes = sc.nextLine();
+
+			if (Short.valueOf(mes) < 1 || Short.valueOf(mes) > 12) {
+				esValido = false;
+				mostrarMensaje("ERROR, mes introducido incorrecto\n");
+			}
+		} while (!esValido);
+		
+		return mes;
 	}
 
 	private static String solicitarDiaVotacion(String string) {
-		// TODO Auto-generated method stub
-		return null;
+
+		boolean esValido;
+		String dia;
+
+			do {
+				esValido = true;
+				mostrarMensaje(string);
+				dia = sc.nextLine();
+				
+				if (Short.valueOf(dia) < 1 || Short.valueOf(dia) > 31) {
+					mostrarMensaje("ERROR, dia introducido incorrecto\n");
+					esValido = false;
+				}
+			} while (!esValido);
+			
+		return dia;
 	}
 
 	private static String solicitarCodigoPostal(String string) {
 
-		Delegados_Modelo5_2_conclusion modelo5_2C = null;
-		boolean esValido = true;
+		boolean esValido;
 		String CP;
 
 		do {
 			esValido = true;
-			mostrarMensaje("Codigo Postal: ");
+			mostrarMensaje(string);
 			CP = sc.nextLine();
-			try {
-				modelo5_2C.setC(CP);
-			} catch (CumplimentarPDFException e) {
+			
+			if (!(CP.matches("\\d{5}"))) {
 				esValido = false;
-				mostrarMensaje(e.getMessage());
-				e.printStackTrace();
+				mostrarMensaje("ERROR, Codigo Postal incorrecto\n");
 			}
 		} while (!esValido);
 		
-		return null;
+		return CP;
 	}
 
 	private static String solicitarFechaConstitucion(String string) {
@@ -247,7 +354,65 @@ public class ModificarCamposTextoPDFv2 {
 		do {
 			mostrarMensaje(string);
 			fechaConstitucion = sc.nextLine();
+		} while (!validadorFecha.esFormatoFechaValido(fechaConstitucion) || fechaConstitucion.length() != 10);
+		
+		return fechaConstitucion;
+	}
 
+	private static String solicitarDireccion(String string) {
+		
+		mostrarMensaje(string);
+		String direccion = sc.nextLine().toUpperCase();
+		
+		return direccion;
+	}
+
+	private static String solicitarMunicipio(String string) {
+
+		mostrarMensaje(string);
+		String municipio = sc.nextLine().toUpperCase();
+		
+		return municipio;
+	}
+
+	private static String solicitarCIF(String string) {
+		
+		String CIF;
+		boolean esValido;
+		
+		do {
+			mostrarMensaje(string);
+			CIF = sc.nextLine().toUpperCase();
+			esValido = true;
+	    	try {
+	    	@SuppressWarnings("unused")
+			Delegados_Modelo3 modelo3 = new Delegados_Modelo3(CIF);
+			} catch (CumplimentarPDFException e) {
+				esValido = false;
+				mostrarMensaje(e.getMessage());
+			}
+		} while (!esValido);
+		
+		return CIF;
+	}
+
+	private static String solicitarNombreEmpresa(String string) {
+
+		mostrarMensaje(string);
+		String nombreEmpresa= sc.nextLine().toUpperCase();
+		
+		return nombreEmpresa;
+	}
+
+//	private static void solicitarFechaConstitucion(Delegados_Modelo3 modelo3, Delegados_Modelo5_1 modelo5_1) {
+//
+//		ValidadorFecha validadorFecha = new ValidadorFecha();
+//		String fechaConstitucion;
+//
+//		do {
+//			mostrarMensaje("Fecha Constitucion: (FORMATO dd/mm/AAAA)");
+//		} while (!validadorFecha.esFormatoFechaValido(fechaConstitucion = sc.nextLine()));
+//
 //		try {
 //			modelo3.setDia(obtenerDiaDeFecha(fechaConstitucion));
 //			modelo3.setMeses(obtenerMesFecha(fechaConstitucion));
@@ -272,184 +437,100 @@ public class ModificarCamposTextoPDFv2 {
 //			mostrarMensaje(e.getMessage());
 //			e.printStackTrace();
 //		}
-		} while (!validadorFecha.esFormatoFechaValido(fechaConstitucion));
-		
-		return fechaConstitucion;
-	}
+//	}
+//
+//	private static void solicitarDatosEscrutinioBasico(Delegados_Modelo5_2_proceso modelo5_2P, Delegados_Modelo5_2_conclusion modelo5_2C, Delegados_Modelo9 modelo9) {
+//
+//		boolean esValido;
+//
+//		do {
+//			esValido = true;
+//			mostrarMensaje("Dia Votacion: ");
+//			try {
+//				modelo5_2P.setDia1(sc.nextLine());
+//			} catch (CumplimentarPDFException e) {
+//				esValido = false;
+//				mostrarMensaje(e.getMessage());
+//				e.printStackTrace();
+//			}
+//		} while (!esValido);
+//
+//		do {
+//			esValido = true;
+//			mostrarMensaje("Mes Votacion: ");
+//			try {
+//				modelo5_2P.setMes1(sc.nextLine());
+//			} catch (CumplimentarPDFException e) {
+//				esValido = false;
+//				mostrarMensaje(e.getMessage());
+//				e.printStackTrace();
+//			}
+//		} while (esValido);
+//
+//		mostrarMensaje("Total electores: ");
+//		modelo5_2P.setT_electores(sc.nextShort());
+//
+//		do {
+//			esValido = true;
+//			mostrarMensaje("Varones: ");
+//			try {
+//				modelo5_2P.setE_varones(sc.nextShort());
+//			} catch (CumplimentarPDFException e) {
+//				esValido = false;
+//				mostrarMensaje(e.getMessage());
+//				e.printStackTrace();
+//			}
+//		} while (!esValido);
+//
+//		do {
+//			esValido = true;
+//			mostrarMensaje("Codigo Postal: ");
+//			try {
+//				modelo5_2C.setC(sc.nextLine());
+//			} catch (CumplimentarPDFException e) {
+//				esValido = false;
+//				mostrarMensaje(e.getMessage());
+//				e.printStackTrace();
+//			}
+//		} while (!esValido);
+//
+//	}
+//
+//	private static void solicitarDatosConstitucion(Delegados_Modelo3 modelo3) {
+//
+//		
+//    	
+//    	mostrarMensaje("CIF: ");
+//    	try {
+//			modelo3.setCIF(sc.nextLine().toUpperCase());
+//		} catch (CumplimentarPDFException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} 
+//    	
+//    	mostrarMensaje("Municipio: ");
+//    	modelo3.setMunicipio(sc.nextLine().toUpperCase());
+//    	
+//    	mostrarMensaje("Direccion: ");
+//    	modelo3.setD_centro(sc.nextLine().toUpperCase());
+//	}
 
-	private static String solicitarDireccion(String string) {
-		
-		mostrarMensaje(string);
-		String direccion = sc.nextLine().toUpperCase();
-		return direccion;
-	}
-
-	private static String solicitarMunicipio(String string) {
-
-		mostrarMensaje(string);
-		String municipio = sc.nextLine().toUpperCase();
-		return municipio;
-	}
-
-	private static String solicitarCIF(String string) {
-		
-		Delegados_Modelo3 modelo3 = null;
-		String CIF;
-		boolean esValido;
-		
-		do {
-			mostrarMensaje(string);
-			CIF = sc.nextLine().toUpperCase();
-			esValido = true;
-	    	try {
-				modelo3.setCIF(CIF);
-			} catch (CumplimentarPDFException e) {
-				esValido = false;
-				mostrarMensaje(e.getMessage());
-				e.printStackTrace();
-			}
-		} while (!esValido);
-		
-		return CIF;
-	}
-
-	private static String solicitarNombreMesa(String string) {
-
-		mostrarMensaje(string);
-		String nombreEmpresa= sc.nextLine().toUpperCase();
-		
-		return nombreEmpresa;
-	}
-
-	private static void solicitarFechaConstitucion(Delegados_Modelo3 modelo3, Delegados_Modelo5_1 modelo5_1) {
-
-		ValidadorFecha validadorFecha = new ValidadorFecha();
-		String fechaConstitucion;
-
-		do {
-			mostrarMensaje("Fecha Constitucion: (FORMATO dd/mm/AAAA)");
-		} while (!validadorFecha.esFormatoFechaValido(fechaConstitucion = sc.nextLine()));
-
-		try {
-			modelo3.setDia(obtenerDiaDeFecha(fechaConstitucion));
-			modelo3.setMeses(obtenerMesFecha(fechaConstitucion));
-		} catch (CumplimentarPDFException e) {
-
-			mostrarMensaje(e.getMessage());
-			e.printStackTrace();
-		}
-
-		modelo3.setAno(obtenerDosUltimosDigitosAnio(fechaConstitucion));
-
-		try {
-			modelo5_1.setF_constitucion(fechaConstitucion);
-		} catch (CumplimentarPDFException e) {
-			mostrarMensaje(e.getMessage());
-			e.printStackTrace();
-		}
-
-		try {
-			modelo3.setMeses(obtenerMesFecha(fechaConstitucion));
-		} catch (CumplimentarPDFException e) {
-			mostrarMensaje(e.getMessage());
-			e.printStackTrace();
-		}
-	}
-
-	private static void solicitarDatosEscrutinioBasico(Delegados_Modelo5_2_proceso modelo5_2P, Delegados_Modelo5_2_conclusion modelo5_2C, Delegados_Modelo9 modelo9) {
-
-		boolean esValido;
-
-		do {
-			esValido = true;
-			mostrarMensaje("Dia Votacion: ");
-			try {
-				modelo5_2P.setDia1(sc.nextLine());
-			} catch (CumplimentarPDFException e) {
-				esValido = false;
-				mostrarMensaje(e.getMessage());
-				e.printStackTrace();
-			}
-		} while (!esValido);
-
-		do {
-			esValido = true;
-			mostrarMensaje("Mes Votacion: ");
-			try {
-				modelo5_2P.setMes1(sc.nextLine());
-			} catch (CumplimentarPDFException e) {
-				esValido = false;
-				mostrarMensaje(e.getMessage());
-				e.printStackTrace();
-			}
-		} while (esValido);
-
-		mostrarMensaje("Total electores: ");
-		modelo5_2P.setT_electores(sc.nextShort());
-
-		do {
-			esValido = true;
-			mostrarMensaje("Varones: ");
-			try {
-				modelo5_2P.setE_varones(sc.nextShort());
-			} catch (CumplimentarPDFException e) {
-				esValido = false;
-				mostrarMensaje(e.getMessage());
-				e.printStackTrace();
-			}
-		} while (!esValido);
-
-		do {
-			esValido = true;
-			mostrarMensaje("Codigo Postal: ");
-			try {
-				modelo5_2C.setC(sc.nextLine());
-			} catch (CumplimentarPDFException e) {
-				esValido = false;
-				mostrarMensaje(e.getMessage());
-				e.printStackTrace();
-			}
-		} while (!esValido);
-
-	}
-
-	private static void solicitarDatosConstitucion(Delegados_Modelo3 modelo3) {
-
-		
-    	
-    	mostrarMensaje("CIF: ");
-    	try {
-			modelo3.setCIF(sc.nextLine().toUpperCase());
-		} catch (CumplimentarPDFException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-    	
-    	mostrarMensaje("Municipio: ");
-    	modelo3.setMunicipio(sc.nextLine().toUpperCase());
-    	
-    	mostrarMensaje("Direccion: ");
-    	modelo3.setD_centro(sc.nextLine().toUpperCase());
-	}
-
-	public static void modificarCamposTextoPDF(String rutaFormulario, Delegados_Modelo3 modelo3, Delegados_Modelo5_1 modelo5_1, Delegados_Modelo5_2_proceso modelo5_2P, Delegados_Modelo5_2_conclusion modelo5_2C, Delegados_Modelo9 modelo9) throws IOException {
+	public static void modificarCamposTextoPDF(String rutaFormulario, Delegados_Modelo3 modelo3, Delegados_Modelo5_1 modelo5_1, Delegados_Modelo5_2_proceso modelo5_2P, Delegados_Modelo5_2_conclusion modelo5_2C, Delegados_Modelo9 modelo9) throws IOException, CumplimentarPDFException {
         try (PDDocument pdfDocument = PDDocument.load(new File(rutaFormulario))) {
         	
     		String diaConstitucion = obtenerDiaDeFecha(modelo5_1.getF_constitucion());
+    		String mesConstitucion = obtenerMesFecha(modelo5_1.getF_constitucion());
     		String anioConstitucion = obtenerAnioFecha(modelo5_1.getF_constitucion());
-    		
+			String anioConstitucionFormateado = obtenerDosUltimosDigitosAnio(modelo5_1.getF_constitucion());
+			modelo3.setMeses(mesConstitucion);
+			modelo9.setMes(modelo5_2P.getMes1());
             // Obtener el formulario acro
             PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
             PDAcroForm acroForm = docCatalog.getAcroForm();
             
             if (acroForm != null) {
             	
-            	
                  //Modificar campos de texto específicos            
-               
-                 //Agrega más llamadas a modificarCampoTexto para otros campos
-
-                // Guardar el PDF modificado
                 if (rutaFormulario.equals(MODELO_3)) {
                 	modificarCampoTexto(acroForm, "n_empresa", modelo3.getN_empresa());
                 	modificarCampoTexto(acroForm, "CIF", modelo3.getCIF());
@@ -461,12 +542,13 @@ public class ModificarCamposTextoPDFv2 {
                 	modificarCampoTexto(acroForm, "lugar", modelo3.getMunicipio());
                 	modificarCampoTexto(acroForm, "dia", diaConstitucion);
                 	modificarCampoTexto(acroForm, "meses", modelo3.getMeses());
-                	modificarCampoTexto(acroForm, "año", modelo3.getAno());
+                	modificarCampoTexto(acroForm, "año", anioConstitucionFormateado);
                 	modificarCampoTexto(acroForm, "resolución1", modelo3.getResolucion1());
+                	// Guardar el PDF modificado
                 	pdfDocument.save(MODELO_3_CUMPLIMENTADO.concat(modelo3.getN_empresa()).concat(EXTENSION));
 				}
                 else {
-                	if (rutaFormulario.equals(MODELO_5_1)) {
+                	if (rutaFormulario.equals(MODELO_5_1) && (modelo5_2C.isCasilla_de_verificacion2())) {
                 		modificarCampoTexto(acroForm, "n_empresa", modelo5_1.getN_empresa());
                 		modificarCampoTexto(acroForm, "n_comercial", modelo5_1.getN_empresa());
                     	modificarCampoTexto(acroForm, "n_CIF", modelo5_1.getN_CIF());
@@ -475,10 +557,11 @@ public class ModificarCamposTextoPDFv2 {
                     	modificarCampoTexto(acroForm, "municipio", modelo5_1.getMunicipio());
                     	modificarCampoTexto(acroForm, "prov", modelo5_1.getProv());
                     	modificarCampoTexto(acroForm, "f_constitucion", modelo5_1.getF_constitucion());
+                    	// Guardar el PDF modificado
                     	pdfDocument.save(MODELO_5_1_CUMPLIMENTADO.concat(modelo3.getN_empresa()).concat(EXTENSION));
     				}
                 	else {
-                		if (rutaFormulario.equals(MODELO_5_2_PROCESO)) {
+                		if (rutaFormulario.equals(MODELO_5_2_PROCESO) && (modelo5_2C.isCasilla_de_verificacion2())) {
                 			modificarCampoTexto(acroForm, "dia1", modelo5_2P.getDia1());
                     		modificarCampoTexto(acroForm, "mes1", modelo5_2P.getMes1());
                         	modificarCampoTexto(acroForm, "t_electores", String.valueOf(modelo5_2P.getT_electores()));
@@ -486,10 +569,11 @@ public class ModificarCamposTextoPDFv2 {
                         	modificarCampoTexto(acroForm, "e_mujeres", String.valueOf((modelo5_2P.getT_electores()-modelo5_2P.getE_varones())));
                         	modificarCampoTexto(acroForm, "e_total", String.valueOf(modelo5_2P.getT_electores()));
                         	modificarCampoTexto(acroForm, "n_representantes", String.valueOf(modelo5_2P.getN_representantes()));
+                        	// Guardar el PDF modificado
                         	pdfDocument.save(MODELO_5_2_PROCESO_CUMPLIMENTADO.concat(modelo3.getN_empresa()).concat(EXTENSION));
         				}
                 		else {
-                			if (rutaFormulario.equals(MODELO_5_2_CONCLUSION)) {
+                			if (rutaFormulario.equals(MODELO_5_2_CONCLUSION) && (modelo5_2C.isCasilla_de_verificacion2())) {
                 				PDButton button = (PDButton) acroForm.getField("Casilla de verificación2");
                 				modificarCampoTexto(acroForm, "n_empresa", modelo5_2C.getN_empresa());
                             	modificarCampoTexto(acroForm, "n_comercial", modelo5_2C.getN_empresa());
@@ -502,23 +586,30 @@ public class ModificarCamposTextoPDFv2 {
                             	modificarCampoTexto(acroForm, "dirección1", "");
                             	modificarCampoTexto(acroForm, "municipio1", modelo5_2C.getMunicipio());
                             	modificarCampoTexto(acroForm, "prov1", modelo5_2C.getProv());
-                            	modificarCampoTexto(acroForm, "c", modelo5_2C.getC());
+                            	modificarCampoTexto(acroForm, "c.p", modelo5_2C.getCP());
                             	button.setValue("Sí");
                             	modificarCampoTexto(acroForm, "centro trabajo1", modelo5_2C.getN_empresa());
                             	modificarCampoTexto(acroForm, "empresa", modelo5_2C.getN_empresa());
+                            	// Guardar el PDF modificado
                             	pdfDocument.save(MODELO_5_2_CONCLUSION_CUMPLIMENTADO.concat(modelo3.getN_empresa()).concat(EXTENSION));
             				}
                 			else {
-                				modificarCampoTexto(acroForm, "n_empresa", modelo9.getN_empresa());
-                				modificarCampoTexto(acroForm, "cif", modelo9.getCif());
-                        		modificarCampoTexto(acroForm, "n_comecial", modelo9.getN_empresa());
-                            	modificarCampoTexto(acroForm, "n_trabajo", modelo9.getN_empresa());
-                            	modificarCampoTexto(acroForm, "direccion", modelo9.getDireccion());
-                            	modificarCampoTexto(acroForm, "municipio", modelo3.getMunicipio());
-                            	modificarCampoTexto(acroForm, "prov", modelo3.getProv());
-                            	modificarCampoTexto(acroForm, "año", anioConstitucion);
-                            	modificarCampoTexto(acroForm, "total", String.valueOf(modelo5_2P.getN_representantes()));
-                				pdfDocument.save(MODELO_9_CUMPLIMENTADO.concat(modelo3.getN_empresa()).concat(EXTENSION));
+                				if (rutaFormulario.equals(MODELO_9) && (modelo5_2C.isCasilla_de_verificacion2())) {
+                					modificarCampoTexto(acroForm, "n_empresa", modelo9.getN_empresa());
+                    				modificarCampoTexto(acroForm, "cif", modelo9.getCif());
+                            		modificarCampoTexto(acroForm, "n_comecial", modelo9.getN_empresa());
+                                	modificarCampoTexto(acroForm, "n_trabajo", modelo9.getN_empresa());
+                                	modificarCampoTexto(acroForm, "direccion", modelo9.getDireccion());
+                                	modificarCampoTexto(acroForm, "municipio", modelo3.getMunicipio());
+                                	modificarCampoTexto(acroForm, "prov", modelo3.getProv());
+                                	modificarCampoTexto(acroForm, "dia", modelo5_2P.getDia1());
+                                	modificarCampoTexto(acroForm, "mes", modelo9.getMes());
+                                	modificarCampoTexto(acroForm, "año", anioConstitucion);
+                                	modificarCampoTexto(acroForm, "total", String.valueOf(modelo5_2P.getN_representantes()));
+                                	// Guardar el PDF modificado
+                    				pdfDocument.save(MODELO_9_CUMPLIMENTADO.concat(modelo3.getN_empresa()).concat(EXTENSION));
+                				}
+                				
                 			}
                 		}
                 	}
@@ -616,7 +707,7 @@ public class ModificarCamposTextoPDFv2 {
 		return numero;
 	}
 	
-	private static void mostrarMensaje(String string) {
+	public static void mostrarMensaje(String string) {
 
 		System.out.print(string);
 	}
