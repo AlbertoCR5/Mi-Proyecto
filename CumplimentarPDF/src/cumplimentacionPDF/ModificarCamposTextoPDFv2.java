@@ -20,12 +20,12 @@ public class ModificarCamposTextoPDFv2 {
     public static final String MODELO_3 = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_3.pdf";
     public static final String MODELO_5_1 = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_1.pdf";
     public static final String MODELO_5_2_PROCESO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_2_proceso.pdf";
-    public static final String MODELO_5_2_CONCLUSION = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_2_conclusionp.pdf";
+    public static final String MODELO_5_2_CONCLUSION = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_2_conclusion.pdf";
     public static final String MODELO_9 = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_9.pdf";
     public static final String MODELO_3_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_3_CUMPLIMENTADO ";
     public static final String MODELO_5_1_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_1_CUMPLIMENTADO ";
     public static final String MODELO_5_2_PROCESO_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_2_proceso_CUMPLIMENTADO ";
-    public static final String MODELO_5_2_CONCLUSION_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_2_CUMPLIMENTADO ";
+    public static final String MODELO_5_2_CONCLUSION_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_5_2_conclusion_CUMPLIMENTADO ";
     public static final String MODELO_9_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Delegados\\modelo_9_CUMPLIMENTADO ";
     
     //Constantes con directorios de las actas para comite
@@ -404,117 +404,6 @@ public class ModificarCamposTextoPDFv2 {
 		return nombreEmpresa;
 	}
 
-//	private static void solicitarFechaConstitucion(Delegados_Modelo3 modelo3, Delegados_Modelo5_1 modelo5_1) {
-//
-//		ValidadorFecha validadorFecha = new ValidadorFecha();
-//		String fechaConstitucion;
-//
-//		do {
-//			mostrarMensaje("Fecha Constitucion: (FORMATO dd/mm/AAAA)");
-//		} while (!validadorFecha.esFormatoFechaValido(fechaConstitucion = sc.nextLine()));
-//
-//		try {
-//			modelo3.setDia(obtenerDiaDeFecha(fechaConstitucion));
-//			modelo3.setMeses(obtenerMesFecha(fechaConstitucion));
-//		} catch (CumplimentarPDFException e) {
-//
-//			mostrarMensaje(e.getMessage());
-//			e.printStackTrace();
-//		}
-//
-//		modelo3.setAno(obtenerDosUltimosDigitosAnio(fechaConstitucion));
-//
-//		try {
-//			modelo5_1.setF_constitucion(fechaConstitucion);
-//		} catch (CumplimentarPDFException e) {
-//			mostrarMensaje(e.getMessage());
-//			e.printStackTrace();
-//		}
-//
-//		try {
-//			modelo3.setMeses(obtenerMesFecha(fechaConstitucion));
-//		} catch (CumplimentarPDFException e) {
-//			mostrarMensaje(e.getMessage());
-//			e.printStackTrace();
-//		}
-//	}
-//
-//	private static void solicitarDatosEscrutinioBasico(Delegados_Modelo5_2_proceso modelo5_2P, Delegados_Modelo5_2_conclusion modelo5_2C, Delegados_Modelo9 modelo9) {
-//
-//		boolean esValido;
-//
-//		do {
-//			esValido = true;
-//			mostrarMensaje("Dia Votacion: ");
-//			try {
-//				modelo5_2P.setDia1(sc.nextLine());
-//			} catch (CumplimentarPDFException e) {
-//				esValido = false;
-//				mostrarMensaje(e.getMessage());
-//				e.printStackTrace();
-//			}
-//		} while (!esValido);
-//
-//		do {
-//			esValido = true;
-//			mostrarMensaje("Mes Votacion: ");
-//			try {
-//				modelo5_2P.setMes1(sc.nextLine());
-//			} catch (CumplimentarPDFException e) {
-//				esValido = false;
-//				mostrarMensaje(e.getMessage());
-//				e.printStackTrace();
-//			}
-//		} while (esValido);
-//
-//		mostrarMensaje("Total electores: ");
-//		modelo5_2P.setT_electores(sc.nextShort());
-//
-//		do {
-//			esValido = true;
-//			mostrarMensaje("Varones: ");
-//			try {
-//				modelo5_2P.setE_varones(sc.nextShort());
-//			} catch (CumplimentarPDFException e) {
-//				esValido = false;
-//				mostrarMensaje(e.getMessage());
-//				e.printStackTrace();
-//			}
-//		} while (!esValido);
-//
-//		do {
-//			esValido = true;
-//			mostrarMensaje("Codigo Postal: ");
-//			try {
-//				modelo5_2C.setC(sc.nextLine());
-//			} catch (CumplimentarPDFException e) {
-//				esValido = false;
-//				mostrarMensaje(e.getMessage());
-//				e.printStackTrace();
-//			}
-//		} while (!esValido);
-//
-//	}
-//
-//	private static void solicitarDatosConstitucion(Delegados_Modelo3 modelo3) {
-//
-//		
-//    	
-//    	mostrarMensaje("CIF: ");
-//    	try {
-//			modelo3.setCIF(sc.nextLine().toUpperCase());
-//		} catch (CumplimentarPDFException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} 
-//    	
-//    	mostrarMensaje("Municipio: ");
-//    	modelo3.setMunicipio(sc.nextLine().toUpperCase());
-//    	
-//    	mostrarMensaje("Direccion: ");
-//    	modelo3.setD_centro(sc.nextLine().toUpperCase());
-//	}
-
 	public static void modificarCamposTextoPDF(String rutaFormulario, Delegados_Modelo3 modelo3, Delegados_Modelo5_1 modelo5_1, Delegados_Modelo5_2_proceso modelo5_2P, Delegados_Modelo5_2_conclusion modelo5_2C, Delegados_Modelo9 modelo9) throws IOException, CumplimentarPDFException {
         try (PDDocument pdfDocument = PDDocument.load(new File(rutaFormulario))) {
         	
@@ -556,7 +445,7 @@ public class ModificarCamposTextoPDFv2 {
                     	modificarCampoTexto(acroForm, "n_direccion", modelo5_1.getN_direccion());
                     	modificarCampoTexto(acroForm, "municipio", modelo5_1.getMunicipio());
                     	modificarCampoTexto(acroForm, "prov", modelo5_1.getProv());
-                    	modificarCampoTexto(acroForm, "f_constitucion", modelo5_1.getF_constitucion());
+                    	modificarCampoTexto(acroForm, "f_constitucion", modelo5_1.toString().concat("    (".concat(modelo5_1.getF_constitucion()).concat(")")));
                     	// Guardar el PDF modificado
                     	pdfDocument.save(MODELO_5_1_CUMPLIMENTADO.concat(modelo3.getN_empresa()).concat(EXTENSION));
     				}
@@ -621,7 +510,7 @@ public class ModificarCamposTextoPDFv2 {
         }
     }
 
-	private static String obtenerDiaDeFecha(String fechaConstitucion) {
+	public static String obtenerDiaDeFecha(String fechaConstitucion) {
 
 		try {
 	        // Parsear la fecha
@@ -635,7 +524,7 @@ public class ModificarCamposTextoPDFv2 {
 	}
 	
 	// Nuevo método para obtener el mes de una fecha en formato "dd/mm/AAAA":
-	private static String obtenerMesFecha(String fechaConstitucion) {
+	public static String obtenerMesFecha(String fechaConstitucion) {
 		try {
 	        // Parsear la fecha
 	        LocalDate fechaLocal = LocalDate.parse(fechaConstitucion, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -647,7 +536,7 @@ public class ModificarCamposTextoPDFv2 {
 	    }
 	}
 
-	private static String obtenerAnioFecha(String fechaConstitucion) {
+	public static String obtenerAnioFecha(String fechaConstitucion) {
 
 		try {
 	        // Parsear la fecha
@@ -711,34 +600,4 @@ public class ModificarCamposTextoPDFv2 {
 
 		System.out.print(string);
 	}
-//	 public static String convertirNumeroATexto(int numero) {
-//	        String unidades[] = new String[]{"cero", "uno", "dos", "tres", "cuatro", "cinco", "seis",
-//	                "siete", "ocho", "nueve"};
-//
-//	        String especiales[] = new String[]{"diez","once", "doce", "trece", "catorce", "quince", "dieciseis",
-//	                "diecisiete", "dieciocho", "diecinueve"};
-//
-//	        String decenas[] = new String[]{ "veinte", "treinta", "cuarenta", "cincuenta", "sesenta",
-//	                "setenta", "ochenta", "noventa"};
-//
-//	        if (numero < 10) {
-//	            return unidades[numero];
-//	        }
-//	        if (numero < 20) {
-//	            return especiales[numero - 10];
-//	        }
-//	        if (numero < 100 && numero % 10 == 0) {
-//	            int index = (numero / 10) - 2;
-//	            return decenas[index];
-//	        }
-//
-//	        if(numero<100){
-//	            int dIndex = (numero/10)-2;
-//	            int uIndex = (numero%10);
-//	            return decenas[dIndex] + " y " + unidades[uIndex];
-//	        }
-//	        //si retorna null es porque el numero  no es valido
-//	        return null;
-//	    }
 }
-
