@@ -1,76 +1,73 @@
-package cumplimentacionPDF;
+package Delegados;
 
 public class Delegados_Modelo9 {
 
-	ComprobarCIF validadorCIF = new ComprobarCIF();
-	ComprobarDNI validarDNI = new ComprobarDNI();
-	private String n_empresa, cif, n_comercial, n_trabajo, direccion, municipio, prov, nombre, dni, dia, mes, ano,
-			total, sindicato1, represent1, sindicato3, sindicato4, sindicato2, sindicato5, sindicato6, sindicato7,
-			sindicato8, sindicato9, sindicato10, sindicato11, sindicato12, sindicato13, represent2, represent3,
-			represent4, represent5, represent6, represent7, represent8, represent9, represent10, represent11,
-			represent12, represent13;
+    private String n_empresa, cif, n_comercial, n_trabajo, direccion, municipio, prov, nombre, dni,
+            dia, mes, ano, total, sindicato1, represent1, sindicato3, sindicato4, sindicato2, sindicato5,
+            sindicato6, sindicato7, sindicato8, sindicato9, sindicato10, sindicato11, sindicato12, sindicato13,
+            represent2, represent3, represent4, represent5, represent6, represent7, represent8, represent9,
+            represent10, represent11, represent12, represent13;
 
-	public Delegados_Modelo9(String n_empresa, String cif, String n_comercial, String n_trabajo, String direccion,
-			String municipio, String nombre, String dni, String dia, String mes, String año, String total,
-			String sindicato1, String represent1, String sindicato3, String sindicato4, String sindicato2,
-			String sindicato5, String sindicato6, String sindicato7, String sindicato8, String sindicato9,
-			String sindicato10, String sindicato11, String sindicato12, String sindicato13, String represent2,
-			String represent3, String represent4, String represent5, String represent6, String represent7,
-			String represent8, String represent9, String represent10, String represent11, String represent12,
-			String represent13) throws CumplimentarPDFException {
-		this.n_empresa = n_empresa;
-		setCif(cif);
-		this.n_comercial = n_comercial;
-		this.n_trabajo = n_trabajo;
-		this.direccion = direccion;
-		this.municipio = municipio;
-		this.prov = Delegados_Modelo3.PROVINCIA;
-		this.nombre = nombre;
-		this.dni = dni;
-		setDia(dia);;
-		setMes(mes);;
-		this.ano = año;
-		this.total = total;
-		this.sindicato1 = sindicato1;
-		this.represent1 = represent1;
-		this.sindicato3 = sindicato3;
-		this.sindicato4 = sindicato4;
-		this.sindicato2 = sindicato2;
-		this.sindicato5 = sindicato5;
-		this.sindicato6 = sindicato6;
-		this.sindicato7 = sindicato7;
-		this.sindicato8 = sindicato8;
-		this.sindicato9 = sindicato9;
-		this.sindicato10 = sindicato10;
-		this.sindicato11 = sindicato11;
-		this.sindicato12 = sindicato12;
-		this.sindicato13 = sindicato13;
-		this.represent2 = represent2;
-		this.represent3 = represent3;
-		this.represent4 = represent4;
-		this.represent5 = represent5;
-		this.represent6 = represent6;
-		this.represent7 = represent7;
-		this.represent8 = represent8;
-		this.represent9 = represent9;
-		this.represent10 = represent10;
-		this.represent11 = represent11;
-		this.represent12 = represent12;
-		this.represent13 = represent13;
-	}
-
-	public Delegados_Modelo9(String n_empresa, String cif, String direccion, String municipio)
-			throws CumplimentarPDFException {
-		setN_empresa(n_empresa);
-		setCif(cif);
-		this.n_comercial = n_empresa;
-		this.n_trabajo = n_empresa;
-		setDireccion(direccion);
-		setMunicipio(municipio);
-		this.prov = Delegados_Modelo3.PROVINCIA;
-	}
-
-	public String getN_empresa() {
+    public Delegados_Modelo9(String n_empresa, String cif, String n_comercial, String n_trabajo, String direccion,
+            String municipio, String nombre, String dni, String dia, String mes, String año,
+            String total, String sindicato1, String represent1, String sindicato3, String sindicato4,
+            String sindicato2, String sindicato5, String sindicato6, String sindicato7, String sindicato8,
+            String sindicato9, String sindicato10, String sindicato11, String sindicato12, String sindicato13,
+            String represent2, String represent3, String represent4, String represent5, String represent6,
+            String represent7, String represent8, String represent9, String represent10, String represent11,
+            String represent12, String represent13) {
+        this.n_empresa = n_empresa;
+        this.cif = cif;
+        this.n_comercial = n_comercial;
+        this.n_trabajo = n_trabajo;
+        this.direccion = direccion;
+        this.municipio = municipio;
+        this.prov = "SEVILLA";
+        this.nombre = nombre;
+        this.dni = dni;
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = año;
+        this.total = total;
+        this.sindicato1 = sindicato1;
+        this.represent1 = represent1;
+        this.sindicato3 = sindicato3;
+        this.sindicato4 = sindicato4;
+        this.sindicato2 = sindicato2;
+        this.sindicato5 = sindicato5;
+        this.sindicato6 = sindicato6;
+        this.sindicato7 = sindicato7;
+        this.sindicato8 = sindicato8;
+        this.sindicato9 = sindicato9;
+        this.sindicato10 = sindicato10;
+        this.sindicato11 = sindicato11;
+        this.sindicato12 = sindicato12;
+        this.sindicato13 = sindicato13;
+        this.represent2 = represent2;
+        this.represent3 = represent3;
+        this.represent4 = represent4;
+        this.represent5 = represent5;
+        this.represent6 = represent6;
+        this.represent7 = represent7;
+        this.represent8 = represent8;
+        this.represent9 = represent9;
+        this.represent10 = represent10;
+        this.represent11 = represent11;
+        this.represent12 = represent12;
+        this.represent13 = represent13;
+    }
+    
+    public Delegados_Modelo9(String n_empresa, String cif, String direccion, String municipio) {
+        this.n_empresa = n_empresa;
+        this.cif = cif;
+        this.n_comercial = n_empresa;
+        this.n_trabajo = n_empresa;
+        this.direccion = direccion;
+        this.municipio = municipio;
+        this.prov = "SEVILLA"; 
+    }
+    
+    public String getN_empresa() {
 		return n_empresa;
 	}
 
@@ -82,11 +79,7 @@ public class Delegados_Modelo9 {
 		return cif;
 	}
 
-	public void setCif(String cif) throws CumplimentarPDFException {
-
-		if (!validadorCIF.validarCIF(cif)) {
-			throw new CumplimentarPDFException("ERROR, CIF introducido incorrecto\n");
-		}
+	public void setCif(String cif) {
 		this.cif = cif;
 	}
 
@@ -142,11 +135,7 @@ public class Delegados_Modelo9 {
 		return dni;
 	}
 
-	public void setDni(String dni) throws CumplimentarPDFException {
-
-		if (!validarDNI.esDNIValido(dni)) {
-			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
-		}
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 
@@ -154,11 +143,7 @@ public class Delegados_Modelo9 {
 		return dia;
 	}
 
-	public void setDia(String dia) throws CumplimentarPDFException {
-
-		if (Short.valueOf(dia) < 1 || Short.valueOf(dia) > 31) {
-			throw new CumplimentarPDFException("ERROR, dia incorrecto\n");
-		}
+	public void setDia(String dia) {
 		this.dia = dia;
 	}
 
@@ -166,17 +151,7 @@ public class Delegados_Modelo9 {
 		return mes;
 	}
 
-	public void setMes(String mes) throws CumplimentarPDFException {
-
-		if (Short.valueOf(mes) < 1 || Short.valueOf(mes) > 12) {
-			throw new CumplimentarPDFException("ERROR, mes incorrecto\n");
-		}
-
-		for (Meses month : Meses.values()) {
-			if (mes.equals(month.obtenerNombre())) {
-				mes = month.toString();
-			}
-		}
+	public void setMes(String mes) {
 		this.mes = mes;
 	}
 
