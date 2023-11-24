@@ -31,13 +31,13 @@ public class ModificarCamposTextoPDFv2 {
     //Constantes con directorios de las actas para comite
     public static final String MODELO_3_COMITE = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\Modelo_3.pdf";
 	public static final String MODELO_4_ESPECIALISTAS = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_4_Especialistas.pdf";
-	public static final String MODELO_4_COMITE = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_4_Tecnicos.pdf";
+	public static final String MODELO_4_TECNICOS      = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_4_Tecnicos.pdf";
 	public static final String MODELO_6_1_ESPECIALISTAS = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_1_Especialistas.pdf";
-	public static final String MODELO_6_1_COMITE = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_1_Tecnicos.pdf";
+	public static final String MODELO_6_1_TECNICOS = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_1_Tecnicos.pdf";
 	public static final String MODELO_6_2_ESPECIALISTAS = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_2_Especialistas.pdf";
-	public static final String MODELO_6_2_COMITE = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_2_Tecnicos.pdf";
+	public static final String MODELO_6_2_TECNICOS = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_2_Tecnicos.pdf";
 	public static final String MODELO_6_3_ESPECIALISTASE = "C:\\\sers\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_3_Especialistas.pdf";
-	public static final String MODELO_6_3_COMITE = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_3_Tecnicos.pdf";
+	public static final String MODELO_6_3_TECNICOS = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_3_Tecnicos.pdf";
 	public static final String MODELO_7_1 = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_7_1.pdf";
 	public static final String MODELO_7_2 = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_7_2.pdf";
 	public static final String MODELO_7_3_ACTA_GLOBAL = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_7_3_acta_global.pdf";
@@ -46,19 +46,19 @@ public class ModificarCamposTextoPDFv2 {
 	public static final String MODELO_9_COMITE = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_9.pdf";
 	public static final String MODELO_3_COMITE_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\Modelo_3_CUMPLIMENTADO ";
 	public static final String MODELO_4_ESPECIALISTAS_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_4_Especialistas_CUMPLIMENTADO ";
-	public static final String MODELO_4_COMITE_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_4_Tecnicos_CUMPLIMENTADO ";
+	public static final String MODELO_4_TECNICOS_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_4_Tecnicos_CUMPLIMENTADO ";
 	public static final String MODELO_6_1_ESPECIALISTAS_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_1_Especialistas_CUMPLIMENTADO ";
-	public static final String MODELO_6_1_COMITE_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_1_Tecnicos_CUMPLIMENTADO ";
+	public static final String MODELO_6_1_TECNICOS_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_1_Tecnicos_CUMPLIMENTADO ";
 	public static final String MODELO_6_2_ESPECIALISTAS_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_2_Especialistas_CUMPLIMENTADO ";
-	public static final String MODELO_6_2_COMITE_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_2_Tecnicos_CUMPLIMENTADO ";
+	public static final String MODELO_6_2_TECNICOS_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_2_Tecnicos_CUMPLIMENTADO ";
 	public static final String MODELO_6_3_ESPECIALISTAS_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_3_Especialistas_CUMPLIMENTADO ";
-	public static final String MODELO_6_3_COMITE_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_3_Tecnicos_CUMPLIMENTADO ";
+	public static final String MODELO_6_3_TECNICOS_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_6_3_Tecnicos_CUMPLIMENTADO ";
 	public static final String MODELO_7_1_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_7_1_CUMPLIMENTADO ";
 	public static final String MODELO_7_2_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_7_2_CUMPLIMENTADO ";
 	public static final String MODELO_7_3_ACTA_GLOBAL_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_7_3_acta_global_CUMPLIMENTADO ";
 	public static final String MODELO_7_3_ANEXO_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_7_3_anexo_CUMPLIMENTADO ";
 	public static final String MODELO_7_3_PROCESO_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_7_3_proceso_CUMPLIMENTADO ";
-	public static final String MODELO_9_COMITE_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_9_CUMPLIMENTADO ";
+	public static final String MODELO_9_TECNICOS_CUMPLIMENTADO = "C:\\Users\\Alberto CR\\Documents\\NetBeansProjects\\JavaApplication6\\src\\Comite\\modelo_9_CUMPLIMENTADO ";
     public static final String EXTENSION = ".pdf";
 
     public static Scanner sc = new Scanner(System.in);
@@ -378,19 +378,19 @@ public class ModificarCamposTextoPDFv2 {
 	private static String solicitarCIF(String string) {
 		
 		String CIF;
+		ComprobarCIF validarCIF = new ComprobarCIF();
 		boolean esValido;
 		
 		do {
 			mostrarMensaje(string);
 			CIF = sc.nextLine().toUpperCase();
 			esValido = true;
-	    	try {
-	    	@SuppressWarnings("unused")
-			Delegados_Modelo3 modelo3 = new Delegados_Modelo3(CIF);
-			} catch (CumplimentarPDFException e) {
+
+			if (!validarCIF.validarCIF(CIF)) {
 				esValido = false;
-				mostrarMensaje(e.getMessage());
+				mostrarMensaje("ERROR, CIF Incorrecto\n");
 			}
+
 		} while (!esValido);
 		
 		return CIF;

@@ -173,7 +173,7 @@ public class Delegados_Modelo5_2_proceso {
 		setT_electores(t_electores);
 		setE_varones(e_varones);
 		setE_mujeres(e_mujeres);
-		this.e_total = t_electores;
+		setT_electores(t_electores);
 		setN_representantes(n_representantes);
 	}
 
@@ -205,7 +205,11 @@ public class Delegados_Modelo5_2_proceso {
 		return t_electores;
 	}
 
-	public void setT_electores(short t_electores) {
+	public void setT_electores(short t_electores) throws CumplimentarPDFException {
+		
+		if (t_electores > 50) {
+			throw new CumplimentarPDFException("Error, el numero de electores para elegir delegados de personal no puede ser mayor a 50");
+		}
 		this.t_electores = t_electores;
 	}
 

@@ -15,56 +15,50 @@ public class Delegados_Modelo3 {
 	ComprobarDNI validarDNI = new ComprobarDNI();
 
 	// Atributos
-	private String n_empresa, CIF, n_comercial, n_centro, d_centro, municipio, prov, lugar, horas, dia, meses, ano,
-			resolucion1, resolucion2, presidencia, dni4, vocal, dni2, secretario, dni3;
+	private String nombreEmpresa, CIF, nombreComercial, nombreCentroTrabajo, direccion, municipio, provincia, lugar, horas, dia, meses, anio,
+			promotor, promotorLinea2, presidencia, dni1, vocal, dni2, secretario, dni3;
 
 	public Delegados_Modelo3(String n_empresa, String CIF, String n_comercial, String n_centro, String d_centro,
 			String municipio, String prov, String lugar, String horas, String dia, String meses, String ano,
-			String resolucion1, String resolucion2, String presidencia, String dni4, String vocal, String dni2,
+			String resolucion1, String resolucion2, String presidencia, String dni1, String vocal, String dni2,
 			String secretario, String dni3) throws CumplimentarPDFException {
-		this.n_empresa = n_empresa;
+		this.nombreEmpresa = n_empresa;
 		setCIF(CIF);
-		this.n_comercial = n_comercial;
-		this.n_centro = n_centro;
-		this.d_centro = d_centro;
+		this.nombreComercial = n_comercial;
+		this.nombreCentroTrabajo = n_centro;
+		this.direccion = d_centro;
 		this.municipio = municipio;
-		this.prov = PROVINCIA;
+		this.provincia = PROVINCIA;
 		this.lugar = lugar;
 		this.horas = horas;
 		setDia(dia);
 		setMeses(meses);
-		this.ano = ano;
-		this.resolucion1 = PROMOTOR;
-		this.resolucion2 = resolucion2;
+		this.anio = ano;
+		this.promotor = PROMOTOR;
+		this.promotorLinea2 = resolucion2;
 		this.presidencia = presidencia;
-		setDni4(dni4);
+		setDni4(dni1);
 		this.vocal = vocal;
 		setDni2(dni2);
 		this.secretario = secretario;
 		setDni3(dni3);
-		;
 	}
 
 	public Delegados_Modelo3(String n_empresa, String CIF, String d_centro, String municipio)
 			throws CumplimentarPDFException {
 		setN_empresa(n_empresa);
 		setCIF(CIF);
-		this.n_comercial = n_empresa;
-		this.n_centro = n_empresa;
+		this.nombreComercial = n_empresa;
+		this.nombreCentroTrabajo = n_empresa;
 		setD_centro(d_centro);
 		setMunicipio(municipio);
-		this.prov = PROVINCIA;
-		this.resolucion1 = PROMOTOR;
-	}
-
-	public Delegados_Modelo3(String CIF) throws CumplimentarPDFException {
-
-		setCIF(CIF);
+		this.provincia = PROVINCIA;
+		this.promotor = PROMOTOR;
 	}
 
 	// Getters
 	public String getN_empresa() {
-		return n_empresa;
+		return nombreEmpresa;
 	}
 
 	public String getCIF() {
@@ -72,11 +66,11 @@ public class Delegados_Modelo3 {
 	}
 
 	public String getN_comercial() {
-		return n_comercial;
+		return nombreComercial;
 	}
 
 	public String getN_centro() {
-		return n_centro;
+		return nombreCentroTrabajo;
 	}
 
 	public String getMunicipio() {
@@ -84,7 +78,7 @@ public class Delegados_Modelo3 {
 	}
 
 	public String getProv() {
-		return prov;
+		return provincia;
 	}
 
 	public String getLugar() {
@@ -100,15 +94,15 @@ public class Delegados_Modelo3 {
 	}
 
 	public String getAno() {
-		return ano;
+		return anio;
 	}
 
 	public String getResolucion1() {
-		return resolucion1;
+		return promotor;
 	}
 
 	public String getResolucion2() {
-		return resolucion2;
+		return promotorLinea2;
 	}
 
 	public String getPresidencia() {
@@ -116,7 +110,7 @@ public class Delegados_Modelo3 {
 	}
 
 	public String getDni4() {
-		return dni4;
+		return dni1;
 	}
 
 	public String getVocal() {
@@ -137,7 +131,7 @@ public class Delegados_Modelo3 {
 
 	// Setters
 	public void setN_empresa(String n_empresa) {
-		this.n_empresa = n_empresa;
+		this.nombreEmpresa = n_empresa;
 	}
 
 	public void setCIF(String CIF) throws CumplimentarPDFException {
@@ -149,11 +143,11 @@ public class Delegados_Modelo3 {
 	}
 
 	public void setN_comercial(String n_comercial) {
-		this.n_comercial = n_comercial;
+		this.nombreComercial = n_comercial;
 	}
 
 	public void setN_centro(String n_centro) {
-		this.n_centro = n_centro;
+		this.nombreCentroTrabajo = n_centro;
 	}
 
 	public void setMunicipio(String municipio) {
@@ -161,7 +155,7 @@ public class Delegados_Modelo3 {
 	}
 
 	public void setProv(String prov) {
-		this.prov = prov;
+		this.provincia = prov;
 	}
 
 	public void setLugar(String lugar) {
@@ -187,15 +181,15 @@ public class Delegados_Modelo3 {
 	}
 
 	public void setAno(String ano) {
-		this.ano = ano;
+		this.anio = ano;
 	}
 
 	public void setResolucion1(String resolucion1) {
-		this.resolucion1 = resolucion1;
+		this.promotor = resolucion1;
 	}
 
 	public void setResolucion2(String resolucion2) {
-		this.resolucion2 = resolucion2;
+		this.promotorLinea2 = resolucion2;
 	}
 
 	public void setPresidencia(String presidencia) {
@@ -207,7 +201,7 @@ public class Delegados_Modelo3 {
 		if (!validarDNI.esDNIValido(dni4)) {
 			throw new CumplimentarPDFException("ERROR, DNI introducido incorrecto\n");
 		}
-		this.dni4 = dni4;
+		this.dni1 = dni4;
 	}
 
 	public void setVocal(String vocal) {
@@ -235,11 +229,11 @@ public class Delegados_Modelo3 {
 	}
 
 	public String getD_centro() {
-		return d_centro;
+		return direccion;
 	}
 
 	public void setD_centro(String d_centro) {
-		this.d_centro = d_centro;
+		this.direccion = d_centro;
 	}
 
 	public String getDia() {
